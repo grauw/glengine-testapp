@@ -100,7 +100,6 @@ public class TestRenderer extends GLEngineRenderer {
 		program = new Program(context);
 		program.attachShader(vertexShader);
 		program.attachShader(fragmentShader);
-		program.bindAttribLocation(5, "position");
 		program.link();
 		
 		context.releaseShaderCompiler();
