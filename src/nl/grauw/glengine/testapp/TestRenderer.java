@@ -14,16 +14,15 @@ import nl.grauw.glengine.gl.Context.PrimitiveType;
 import nl.grauw.glengine.gl.PixelDataType;
 import nl.grauw.glengine.gl.PixelFormat;
 import nl.grauw.glengine.gl.Program;
-import nl.grauw.glengine.gl.Shader.FragmentShader;
-import nl.grauw.glengine.gl.Shader.VertexShader;
 import nl.grauw.glengine.gl.Texture.MagnificationFilter;
 import nl.grauw.glengine.gl.Texture.MinificationFilter;
 import nl.grauw.glengine.gl.Texture2D;
 import nl.grauw.glengine.gl.Utils;
+import nl.grauw.glengine.scene.Material;
 
 public class TestRenderer extends GLEngineRenderer {
 	
-	private Program program;
+	private Material material;
 	private final Bitmap textureBitmap;
 	private final long startTime;
 	
@@ -49,6 +48,7 @@ public class TestRenderer extends GLEngineRenderer {
 			 2.0f,  2.0f
 		});
 		
+		Program program = material.getProgram();
 		context.useProgram(program);
 		context.setVertexAttribPointer("position", 3, 0, vertices);
 		context.enableVertexAttribArray("position");
@@ -68,20 +68,16 @@ public class TestRenderer extends GLEngineRenderer {
 
 	@Override
 	public void onSurfaceCreated(Context context, EGLConfig config) {
-		VertexShader vertexShader = new VertexShader();
-		vertexShader.setSource(
+		String vertexShader =
 			"attribute vec4 position;" +
 			"attribute vec2 texCoord;" +
 			"varying vec2 v_texCoord;" +
 			"void main() {" +
 			"    gl_Position = position;" +
 			"    v_texCoord = texCoord;" +
-			"}"
-		);
-		vertexShader.compile();
+			"}";
 		
-		FragmentShader fragmentShader = new FragmentShader();
-		fragmentShader.setSource(
+		String fragmentShader =
 			"precision mediump float;" +
 			"struct test {" +
 			"    vec4 color[2];" +
@@ -93,14 +89,11 @@ public class TestRenderer extends GLEngineRenderer {
 			"void main() {" +
 			"    float mixValue = sinTime / 2.8 + 0.5;" +
 			"    gl_FragColor = mix(texture2D(texture, v_texCoord), (color.color[0] + color.color[1]), mixValue);" +
-			"}"
-		);
-		fragmentShader.compile();
+			"}";
 		
-		program = new Program(context);
-		program.attachShader(vertexShader);
-		program.attachShader(fragmentShader);
-		program.link();
+		Material material = new Material(vertexShader, fragmentShader);
+		
+		material.compile(context);
 		
 		context.releaseShaderCompiler();
 		
