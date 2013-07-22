@@ -1,10 +1,11 @@
 package nl.grauw.glengine.testapp;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
+import nl.grauw.glengine.gl.GLEngineException;
 import nl.grauw.glengine.scene.Material;
-import nl.grauw.glengine.scene.MaterialManager;
 
 import android.content.Context;
 import android.content.res.AssetManager;
@@ -19,9 +20,7 @@ public class TestSurfaceView extends GLSurfaceView {
 	public TestSurfaceView(Context context) {
 		super(context);
 		
-		MaterialManager materialManager = new MaterialManager(getContext().getAssets());
-		
-		Material material = materialManager.createMaterial(new File("test.vert"), new File("test.frag"));
+		Material material = new Material(loadTextAsset("test.vert"), loadTextAsset("test.frag"));
 		Bitmap texture = getTextureBitmap();
 		
 		renderer = new TestRenderer(material, texture);
@@ -29,6 +28,24 @@ public class TestSurfaceView extends GLSurfaceView {
 		setEGLContextClientVersion(2);
 		
 		setRenderer(renderer);
+	}
+	
+	private String loadTextAsset(String path) {
+		AssetManager assets = getContext().getAssets();
+		try {
+			InputStream input = assets.open(path);
+			InputStreamReader reader = new InputStreamReader(input, "UTF-8");
+			StringBuilder text = new StringBuilder();
+			
+			int length;
+			char[] buffer = new char[1024];
+			while ((length = reader.read(buffer)) != -1)
+				text.append(buffer, 0, length);
+			
+			return text.toString();
+		} catch (IOException e) {
+			throw new GLEngineException("Error reading file", e);
+		}
 	}
 	
 	public Bitmap getTextureBitmap() {
