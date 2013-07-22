@@ -1,6 +1,5 @@
 package nl.grauw.glengine.testapp;
 
-import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -11,8 +10,6 @@ import android.os.SystemClock;
 import nl.grauw.glengine.GLEngineRenderer;
 import nl.grauw.glengine.gl.Context;
 import nl.grauw.glengine.gl.Context.PrimitiveType;
-import nl.grauw.glengine.gl.PixelDataType;
-import nl.grauw.glengine.gl.PixelFormat;
 import nl.grauw.glengine.gl.Program;
 import nl.grauw.glengine.gl.Texture.MagnificationFilter;
 import nl.grauw.glengine.gl.Texture.MinificationFilter;
@@ -74,22 +71,8 @@ public class TestRenderer extends GLEngineRenderer {
 		context.releaseShaderCompiler();
 		
 		Texture2D texture = context.getActiveTextureUnit().getDefaultTexture2D();
-		int byteCount = textureBitmap.getWidth() * textureBitmap.getHeight() * (textureBitmap.getConfig() == Bitmap.Config.ARGB_8888 ? 4 : 2);
-		ByteBuffer textureBuffer = Utils.createByteBuffer(byteCount);
-		textureBitmap.copyPixelsToBuffer(textureBuffer);
-		textureBuffer.position(0);
-		
-		texture.setImage(
-			0,
-			textureBitmap.getWidth(),
-			textureBitmap.getHeight(),
-			textureBitmap.getConfig() == Bitmap.Config.RGB_565 ? PixelFormat.RGB : PixelFormat.RGBA,
-			textureBitmap.getConfig() == Bitmap.Config.RGB_565 ? PixelDataType.UNSIGNED_SHORT_5_6_5 : PixelDataType.UNSIGNED_BYTE,
-			textureBuffer
-		);
-		
+		texture.setImage(0, textureBitmap);
 		texture.generateMipmaps();
-		
 		texture.setMinificationFilter(MinificationFilter.LINEAR_MIPMAP_LINEAR);
 		texture.setMagnificationFilter(MagnificationFilter.LINEAR);
 		
