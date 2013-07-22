@@ -21,7 +21,7 @@ public class TestSurfaceView extends GLSurfaceView {
 		super(context);
 		
 		Material material = new Material(loadTextAsset("test.vert"), loadTextAsset("test.frag"));
-		Bitmap texture = getTextureBitmap();
+		Bitmap texture = loadBitmapAsset("texture.png");
 		
 		renderer = new TestRenderer(material, texture);
 		
@@ -48,10 +48,10 @@ public class TestSurfaceView extends GLSurfaceView {
 		}
 	}
 	
-	public Bitmap getTextureBitmap() {
+	public Bitmap loadBitmapAsset(String path) {
 		AssetManager assets = getContext().getAssets();
 		try {
-			return BitmapFactory.decodeStream(assets.open("texture.png"));
+			return BitmapFactory.decodeStream(assets.open(path));
 		} catch (IOException e) {
 			throw new RuntimeException(e);
 		}
