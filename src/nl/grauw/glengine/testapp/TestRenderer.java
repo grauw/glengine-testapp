@@ -26,7 +26,8 @@ public class TestRenderer extends GLEngineRenderer {
 	private final Bitmap textureBitmap;
 	private final long startTime;
 	
-	public TestRenderer(Bitmap textureImage) {
+	public TestRenderer(Material material, Bitmap textureImage) {
+		this.material = material;
 		this.textureBitmap = textureImage;
 		startTime = SystemClock.uptimeMillis();
 	}
@@ -68,31 +69,6 @@ public class TestRenderer extends GLEngineRenderer {
 
 	@Override
 	public void onSurfaceCreated(Context context, EGLConfig config) {
-		String vertexShader =
-			"attribute vec4 position;" +
-			"attribute vec2 texCoord;" +
-			"varying vec2 v_texCoord;" +
-			"void main() {" +
-			"    gl_Position = position;" +
-			"    v_texCoord = texCoord;" +
-			"}";
-		
-		String fragmentShader =
-			"precision mediump float;" +
-			"struct test {" +
-			"    vec4 color[2];" +
-			"};" +
-			"uniform float sinTime;" +
-			"uniform test color;" +
-			"varying vec2 v_texCoord;" +
-			"uniform sampler2D texture;" +
-			"void main() {" +
-			"    float mixValue = sinTime / 2.8 + 0.5;" +
-			"    gl_FragColor = mix(texture2D(texture, v_texCoord), (color.color[0] + color.color[1]), mixValue);" +
-			"}";
-		
-		Material material = new Material(vertexShader, fragmentShader);
-		
 		material.compile(context);
 		
 		context.releaseShaderCompiler();
