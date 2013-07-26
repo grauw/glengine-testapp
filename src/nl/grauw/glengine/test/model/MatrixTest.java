@@ -66,6 +66,11 @@ public class MatrixTest extends TestCase {
 		assertEquals(false, matrix1.equals(matrix2));
 	}
 	
+	public void testEquals_Self() {
+		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
+		assertEquals(true, matrix.equals(matrix));
+	}
+	
 	public void testTranspose() {
 		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
 		Matrix transposed = matrix.transpose();
