@@ -25,6 +25,8 @@ public class Utils {
 		int actualBits = Float.floatToIntBits(actual) < 0 ? 0x80000000 - Float.floatToIntBits(actual) : Float.floatToIntBits(actual);
 		int difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
 		
+		if (Float.isNaN(expected) || Float.isNaN(actual))
+			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
 		if (difference > maxUlps)
 			TestCase.assertEquals(expected, actual);
 	}
@@ -53,6 +55,8 @@ public class Utils {
 		long actualBits = Double.doubleToLongBits(actual) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(actual) : Double.doubleToLongBits(actual);
 		long difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
 		
+		if (Double.isNaN(expected) || Double.isNaN(actual))
+			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
 		if (difference > maxUlps)
 			TestCase.assertEquals(expected, actual);
 	}
