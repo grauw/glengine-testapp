@@ -30,16 +30,16 @@ public class MatrixTest extends TestCase {
 		assertEquals(1.0f, matrix.getValue(1, 2));
 	}
 	
-	public void testGetArray() {
+	public void testGetElements() {
 		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
-		float[] returned = matrix.toArray();
-		assertEquals(6, returned.length);
-		assertEquals(6.0f, returned[0]);
-		assertEquals(5.0f, returned[1]);
-		assertEquals(4.0f, returned[2]);
-		assertEquals(3.0f, returned[3]);
-		assertEquals(2.0f, returned[4]);
-		assertEquals(1.0f, returned[5]);
+		float[] elements = matrix.getElements();
+		assertEquals(6, elements.length);
+		assertEquals(6.0f, elements[0]);
+		assertEquals(5.0f, elements[1]);
+		assertEquals(4.0f, elements[2]);
+		assertEquals(3.0f, elements[3]);
+		assertEquals(2.0f, elements[4]);
+		assertEquals(1.0f, elements[5]);
 	}
 	
 	public void testEquals() {
