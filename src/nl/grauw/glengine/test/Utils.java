@@ -40,4 +40,32 @@ public class Utils {
 		assertFloatEquals(expected, actual, 5);
 	}
 	
+	/**
+	 * Asserts that two double precision floats are equal within a margin of error.
+	 * 
+	 * @param expected The expected value.
+	 * @param actual The actual value.
+	 * @param maxUlps The maximum difference in ULPs.
+	 * @see Utils#assertFloatEquals(float, float, int)
+	 */
+	public static void assertDoubleEquals(double expected, double actual, long maxUlps) {
+		long expectedBits = Double.doubleToLongBits(expected) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(expected) : Double.doubleToLongBits(expected);
+		long actualBits = Double.doubleToLongBits(actual) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(actual) : Double.doubleToLongBits(actual);
+		long difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
+		
+		if (difference > maxUlps)
+			TestCase.assertEquals(expected, actual);
+	}
+	
+	/**
+	 * Asserts that two double precision floats are equal within a margin of 5 ULPs.
+	 * 
+	 * @param expected The expected value.
+	 * @param actual The actual value.
+	 * @see Utils#assertFloatEquals(float, float, int)
+	 */
+	public static void assertDoubleEquals(double expected, double actual) {
+		assertDoubleEquals(expected, actual, 5);
+	}
+	
 }
