@@ -234,9 +234,9 @@ public class MatrixTest extends TestCase {
 	}
 	
 	// XXX: this test is a bit weak, it does not test the actual projection.
-	public void testProjection() {
-		Matrix projection1 = new Matrix.Projection(-3, 3, -2, 2, 13, 150);
-		Matrix projection2 = new Matrix.Projection(6, 4, 13, 150);
+	public void testPerspectiveProjection() {
+		Matrix projection1 = new Matrix.PerspectiveProjection(-3, 3, -2, 2, 13, 150);
+		Matrix projection2 = new Matrix.PerspectiveProjection(6, 4, 13, 150);
 		assertEquals(true, projection1.equals(projection2));
 	}
 	
