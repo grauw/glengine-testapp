@@ -199,7 +199,7 @@ public class MatrixTest extends TestCase {
 	
 	public void testXRotationMatrix() {
 		Matrix matrix1 = new Matrix.XRotation(1);
-		Matrix matrix2 = new Matrix.AxisRotation(1, 0, 0, 1);
+		Matrix matrix2 = new Matrix.Rotation(1, 0, 0, 1);
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
 		Matrix product1 = matrix1.multiply(vector);
 		Matrix product2 = matrix2.multiply(vector);
@@ -211,7 +211,7 @@ public class MatrixTest extends TestCase {
 	
 	public void testYRotationMatrix() {
 		Matrix matrix1 = new Matrix.YRotation(2);
-		Matrix matrix2 = new Matrix.AxisRotation(0, 1, 0, 2);
+		Matrix matrix2 = new Matrix.Rotation(0, 1, 0, 2);
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
 		Matrix product1 = matrix1.multiply(vector);
 		Matrix product2 = matrix2.multiply(vector);
@@ -223,7 +223,7 @@ public class MatrixTest extends TestCase {
 	
 	public void testZRotationMatrix() {
 		Matrix matrix1 = new Matrix.ZRotation(3);
-		Matrix matrix2 = new Matrix.AxisRotation(0, 0, 1, 3);
+		Matrix matrix2 = new Matrix.Rotation(0, 0, 1, 3);
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
 		Matrix product1 = matrix1.multiply(vector);
 		Matrix product2 = matrix2.multiply(vector);
