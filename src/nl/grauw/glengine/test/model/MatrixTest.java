@@ -20,14 +20,14 @@ public class MatrixTest extends TestCase {
 		assertEquals(3, matrix.getRows());
 	}
 	
-	public void testGetValue() {
+	public void testGetElement() {
 		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
-		assertEquals(6.0f, matrix.getValue(0, 0));
-		assertEquals(5.0f, matrix.getValue(0, 1));
-		assertEquals(4.0f, matrix.getValue(0, 2));
-		assertEquals(3.0f, matrix.getValue(1, 0));
-		assertEquals(2.0f, matrix.getValue(1, 1));
-		assertEquals(1.0f, matrix.getValue(1, 2));
+		assertEquals(6.0f, matrix.getElement(0, 0));
+		assertEquals(5.0f, matrix.getElement(0, 1));
+		assertEquals(4.0f, matrix.getElement(0, 2));
+		assertEquals(3.0f, matrix.getElement(1, 0));
+		assertEquals(2.0f, matrix.getElement(1, 1));
+		assertEquals(1.0f, matrix.getElement(1, 2));
 	}
 	
 	public void testGetElements() {
@@ -71,12 +71,12 @@ public class MatrixTest extends TestCase {
 		assertNotSame(matrix, transposed);
 		assertEquals(3, transposed.getColumns());
 		assertEquals(2, transposed.getRows());
-		assertEquals(6.0f, transposed.getValue(0, 0));
-		assertEquals(3.0f, transposed.getValue(0, 1));
-		assertEquals(5.0f, transposed.getValue(1, 0));
-		assertEquals(2.0f, transposed.getValue(1, 1));
-		assertEquals(4.0f, transposed.getValue(2, 0));
-		assertEquals(1.0f, transposed.getValue(2, 1));
+		assertEquals(6.0f, transposed.getElement(0, 0));
+		assertEquals(3.0f, transposed.getElement(0, 1));
+		assertEquals(5.0f, transposed.getElement(1, 0));
+		assertEquals(2.0f, transposed.getElement(1, 1));
+		assertEquals(4.0f, transposed.getElement(2, 0));
+		assertEquals(1.0f, transposed.getElement(2, 1));
 	}
 	
 	public void testMultiply_Identity() {
@@ -85,10 +85,10 @@ public class MatrixTest extends TestCase {
 		Matrix product = matrix1.multiply(matrix2);
 		assertEquals(2, product.getColumns());
 		assertEquals(2, product.getRows());
-		assertEquals(6.0f, product.getValue(0, 0));
-		assertEquals(5.0f, product.getValue(0, 1));
-		assertEquals(4.0f, product.getValue(1, 0));
-		assertEquals(3.0f, product.getValue(1, 1));
+		assertEquals(6.0f, product.getElement(0, 0));
+		assertEquals(5.0f, product.getElement(0, 1));
+		assertEquals(4.0f, product.getElement(1, 0));
+		assertEquals(3.0f, product.getElement(1, 1));
 	}
 	
 	public void testMultiply_ScaleTranslate() {
@@ -97,15 +97,15 @@ public class MatrixTest extends TestCase {
 		Matrix product = scaleMatrix.multiply(translateMatrix);
 		assertEquals(3, product.getColumns());
 		assertEquals(3, product.getRows());
-		assertEquals(2.0f, product.getValue(0, 0));
-		assertEquals(0.0f, product.getValue(0, 1));
-		assertEquals(0.0f, product.getValue(0, 2));
-		assertEquals(0.0f, product.getValue(1, 0));
-		assertEquals(0.5f, product.getValue(1, 1));
-		assertEquals(0.0f, product.getValue(1, 2));
-		assertEquals(-6.0f, product.getValue(2, 0));
-		assertEquals(1.0f, product.getValue(2, 1));
-		assertEquals(1.0f, product.getValue(2, 2));
+		assertEquals(2.0f, product.getElement(0, 0));
+		assertEquals(0.0f, product.getElement(0, 1));
+		assertEquals(0.0f, product.getElement(0, 2));
+		assertEquals(0.0f, product.getElement(1, 0));
+		assertEquals(0.5f, product.getElement(1, 1));
+		assertEquals(0.0f, product.getElement(1, 2));
+		assertEquals(-6.0f, product.getElement(2, 0));
+		assertEquals(1.0f, product.getElement(2, 1));
+		assertEquals(1.0f, product.getElement(2, 2));
 	}
 	
 	public void testMultiply_IdentityVector() {
@@ -114,9 +114,9 @@ public class MatrixTest extends TestCase {
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
-		assertEquals(5.0f, product.getValue(0, 0));
-		assertEquals(4.0f, product.getValue(0, 1));
-		assertEquals(3.0f, product.getValue(0, 2));
+		assertEquals(5.0f, product.getElement(0, 0));
+		assertEquals(4.0f, product.getElement(0, 1));
+		assertEquals(3.0f, product.getElement(0, 2));
 	}
 	
 	public void testMultiply_VectorIdentity() {
@@ -125,9 +125,9 @@ public class MatrixTest extends TestCase {
 		Matrix product = vector.multiply(matrix);
 		assertEquals(3, product.getColumns());
 		assertEquals(1, product.getRows());
-		assertEquals(5.0f, product.getValue(0, 0));
-		assertEquals(4.0f, product.getValue(1, 0));
-		assertEquals(3.0f, product.getValue(2, 0));
+		assertEquals(5.0f, product.getElement(0, 0));
+		assertEquals(4.0f, product.getElement(1, 0));
+		assertEquals(3.0f, product.getElement(2, 0));
 	}
 	
 	public void testMultiply_TranslateVector() {
@@ -136,9 +136,9 @@ public class MatrixTest extends TestCase {
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
-		assertEquals(2.0f, product.getValue(0, 0));
-		assertEquals(6.0f, product.getValue(0, 1));
-		assertEquals(1.0f, product.getValue(0, 2));
+		assertEquals(2.0f, product.getElement(0, 0));
+		assertEquals(6.0f, product.getElement(0, 1));
+		assertEquals(1.0f, product.getElement(0, 2));
 	}
 	
 	public void testMultiply_ScaleVector() {
@@ -147,9 +147,9 @@ public class MatrixTest extends TestCase {
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
-		assertEquals(4.0f, product.getValue(0, 0));
-		assertEquals(3.0f, product.getValue(0, 1));
-		assertEquals(1.0f, product.getValue(0, 2));
+		assertEquals(4.0f, product.getElement(0, 0));
+		assertEquals(3.0f, product.getElement(0, 1));
+		assertEquals(1.0f, product.getElement(0, 2));
 	}
 	
 	public void testMultiply_RotateVector() {
@@ -158,9 +158,9 @@ public class MatrixTest extends TestCase {
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
-		assertEquals(-3.0f, product.getValue(0, 0));
-		assertEquals(4.0f, product.getValue(0, 1));
-		assertEquals(1.0f, product.getValue(0, 2));
+		assertEquals(-3.0f, product.getElement(0, 0));
+		assertEquals(4.0f, product.getElement(0, 1));
+		assertEquals(1.0f, product.getElement(0, 2));
 	}
 	
 	public void testMultiply_TranslateScaleRotateVector() {
@@ -171,9 +171,9 @@ public class MatrixTest extends TestCase {
 		Matrix product = rotateMatrix.multiply(scaleMatrix).multiply(translateMatrix).multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
-		assertEquals(-3.0f, product.getValue(0, 0));
-		assertEquals(4.0f, product.getValue(0, 1));
-		assertEquals(1.0f, product.getValue(0, 2));
+		assertEquals(-3.0f, product.getElement(0, 0));
+		assertEquals(4.0f, product.getElement(0, 1));
+		assertEquals(1.0f, product.getElement(0, 2));
 	}
 	
 	public void testIdentityMatrix() {
@@ -203,10 +203,10 @@ public class MatrixTest extends TestCase {
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
 		Matrix product1 = matrix1.multiply(vector);
 		Matrix product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getValue(0, 0), product2.getValue(0, 0));
-		Utils.assertFloatEquals(product1.getValue(0, 1), product2.getValue(0, 1));
-		Utils.assertFloatEquals(product1.getValue(0, 2), product2.getValue(0, 2));
-		Utils.assertFloatEquals(product1.getValue(0, 3), product2.getValue(0, 3));
+		Utils.assertFloatEquals(product1.getElement(0, 0), product2.getElement(0, 0));
+		Utils.assertFloatEquals(product1.getElement(0, 1), product2.getElement(0, 1));
+		Utils.assertFloatEquals(product1.getElement(0, 2), product2.getElement(0, 2));
+		Utils.assertFloatEquals(product1.getElement(0, 3), product2.getElement(0, 3));
 	}
 	
 	public void testYRotationMatrix() {
@@ -215,10 +215,10 @@ public class MatrixTest extends TestCase {
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
 		Matrix product1 = matrix1.multiply(vector);
 		Matrix product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getValue(0, 0), product2.getValue(0, 0));
-		Utils.assertFloatEquals(product1.getValue(0, 1), product2.getValue(0, 1));
-		Utils.assertFloatEquals(product1.getValue(0, 2), product2.getValue(0, 2));
-		Utils.assertFloatEquals(product1.getValue(0, 3), product2.getValue(0, 3));
+		Utils.assertFloatEquals(product1.getElement(0, 0), product2.getElement(0, 0));
+		Utils.assertFloatEquals(product1.getElement(0, 1), product2.getElement(0, 1));
+		Utils.assertFloatEquals(product1.getElement(0, 2), product2.getElement(0, 2));
+		Utils.assertFloatEquals(product1.getElement(0, 3), product2.getElement(0, 3));
 	}
 	
 	public void testZRotationMatrix() {
@@ -227,10 +227,10 @@ public class MatrixTest extends TestCase {
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
 		Matrix product1 = matrix1.multiply(vector);
 		Matrix product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getValue(0, 0), product2.getValue(0, 0));
-		Utils.assertFloatEquals(product1.getValue(0, 1), product2.getValue(0, 1));
-		Utils.assertFloatEquals(product1.getValue(0, 2), product2.getValue(0, 2));
-		Utils.assertFloatEquals(product1.getValue(0, 3), product2.getValue(0, 3));
+		Utils.assertFloatEquals(product1.getElement(0, 0), product2.getElement(0, 0));
+		Utils.assertFloatEquals(product1.getElement(0, 1), product2.getElement(0, 1));
+		Utils.assertFloatEquals(product1.getElement(0, 2), product2.getElement(0, 2));
+		Utils.assertFloatEquals(product1.getElement(0, 3), product2.getElement(0, 3));
 	}
 	
 }
