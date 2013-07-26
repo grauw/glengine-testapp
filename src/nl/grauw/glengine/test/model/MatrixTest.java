@@ -1,6 +1,7 @@
 package nl.grauw.glengine.test.model;
 
 import nl.grauw.glengine.model.Matrix;
+import nl.grauw.glengine.test.Utils;
 import junit.framework.TestCase;
 
 public class MatrixTest extends TestCase {
@@ -174,6 +175,63 @@ public class MatrixTest extends TestCase {
 		assertEquals(-3.0f, product.getValue(0, 0));
 		assertEquals(4.0f, product.getValue(0, 1));
 		assertEquals(1.0f, product.getValue(0, 2));
+	}
+	
+	public void testIdentityMatrix() {
+		Matrix matrix = new Matrix.Identity();
+		Matrix vector = new Matrix(1, 4, 4, 5, 6, 7);
+		Matrix product = matrix.multiply(vector);
+		assertEquals(true, product.equals(vector));
+	}
+	
+	public void testTranslationMatrix() {
+		Matrix matrix = new Matrix.Translation(2, 4, -3);
+		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
+		Matrix product = matrix.multiply(vector);
+		assertEquals(true, product.equals(new Matrix(1, 4, 6, 9, 3, 1)));
+	}
+	
+	public void testScaleMatrix() {
+		Matrix matrix = new Matrix.Scale(3, 0.2f, -0.5f);
+		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
+		Matrix product = matrix.multiply(vector);
+		assertEquals(true, product.equals(new Matrix(1, 4, 12, 1, -3, 1)));
+	}
+	
+	public void testXRotationMatrix() {
+		Matrix matrix1 = new Matrix.XRotation(1);
+		Matrix matrix2 = new Matrix.AxisRotation(1, 0, 0, 1);
+		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
+		Matrix product1 = matrix1.multiply(vector);
+		Matrix product2 = matrix2.multiply(vector);
+		Utils.assertFloatEquals(product1.getValue(0, 0), product2.getValue(0, 0));
+		Utils.assertFloatEquals(product1.getValue(0, 1), product2.getValue(0, 1));
+		Utils.assertFloatEquals(product1.getValue(0, 2), product2.getValue(0, 2));
+		Utils.assertFloatEquals(product1.getValue(0, 3), product2.getValue(0, 3));
+	}
+	
+	public void testYRotationMatrix() {
+		Matrix matrix1 = new Matrix.YRotation(2);
+		Matrix matrix2 = new Matrix.AxisRotation(0, 1, 0, 2);
+		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
+		Matrix product1 = matrix1.multiply(vector);
+		Matrix product2 = matrix2.multiply(vector);
+		Utils.assertFloatEquals(product1.getValue(0, 0), product2.getValue(0, 0));
+		Utils.assertFloatEquals(product1.getValue(0, 1), product2.getValue(0, 1));
+		Utils.assertFloatEquals(product1.getValue(0, 2), product2.getValue(0, 2));
+		Utils.assertFloatEquals(product1.getValue(0, 3), product2.getValue(0, 3));
+	}
+	
+	public void testZRotationMatrix() {
+		Matrix matrix1 = new Matrix.ZRotation(3);
+		Matrix matrix2 = new Matrix.AxisRotation(0, 0, 1, 3);
+		Matrix vector = new Matrix(1, 4, 4, 5, 6, 1);
+		Matrix product1 = matrix1.multiply(vector);
+		Matrix product2 = matrix2.multiply(vector);
+		Utils.assertFloatEquals(product1.getValue(0, 0), product2.getValue(0, 0));
+		Utils.assertFloatEquals(product1.getValue(0, 1), product2.getValue(0, 1));
+		Utils.assertFloatEquals(product1.getValue(0, 2), product2.getValue(0, 2));
+		Utils.assertFloatEquals(product1.getValue(0, 3), product2.getValue(0, 3));
 	}
 	
 }
