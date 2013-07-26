@@ -42,12 +42,6 @@ public class MatrixTest extends TestCase {
 		assertEquals(1.0f, returned[5]);
 	}
 	
-	public void testGetArray_NotTheSame() {
-		float[] values = new float[] { 6, 5, 4, 3, 2, 1 };
-		float[] returned = new Matrix(2, 3, values).toArray();
-		assertNotSame(values, returned);
-	}
-	
 	public void testEquals() {
 		Matrix matrix1 = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
 		Matrix matrix2 = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
