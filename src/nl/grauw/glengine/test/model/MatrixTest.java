@@ -233,8 +233,21 @@ public class MatrixTest extends TestCase {
 		Utils.assertFloatEquals(product1.getElement(0, 3), product2.getElement(0, 3));
 	}
 	
-	// XXX: this test is a bit weak, it does not test the actual projection.
 	public void testPerspectiveProjection() {
+		Matrix projection = new Matrix.PerspectiveProjection(-3, 3, -2, 2, 15, 115);
+		Matrix vector = new Matrix(1, 4, 1.5f, -5, -75, 1);
+		Matrix product = projection.multiply(vector);
+		
+		float x = product.getElement(0, 0) / product.getElement(0, 3);
+		float y = product.getElement(0, 1) / product.getElement(0, 3);
+		float z = product.getElement(0, 2) / product.getElement(0, 3);
+		
+		Utils.assertFloatEquals(0.1f, x);
+		Utils.assertFloatEquals(-0.5f, y);
+		Utils.assertFloatEquals(0.84f, z);
+	}
+	
+	public void testPerspectiveProjection_Constructors() {
 		Matrix projection1 = new Matrix.PerspectiveProjection(-3, 3, -2, 2, 13, 150);
 		Matrix projection2 = new Matrix.PerspectiveProjection(6, 4, 13, 150);
 		assertEquals(true, projection1.equals(projection2));
