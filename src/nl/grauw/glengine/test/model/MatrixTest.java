@@ -240,4 +240,20 @@ public class MatrixTest extends TestCase {
 		assertEquals(true, projection1.equals(projection2));
 	}
 	
+	public void testOrthographicProjection() {
+		Matrix projection = new Matrix.OrthographicProjection(-3, 3, -2, 2, 15, 115);
+		Matrix vector = new Matrix(1, 4, 1.5f, -5, -75, 1);
+		Matrix product = projection.multiply(vector);
+		Utils.assertFloatEquals(0.5f, product.getElement(0, 0));
+		Utils.assertFloatEquals(-2.5f, product.getElement(0, 1));
+		Utils.assertFloatEquals(0.2f, product.getElement(0, 2));
+		Utils.assertFloatEquals(1.0f, product.getElement(0, 3));
+	}
+	
+	public void testOrthographicProjection_Constructors() {
+		Matrix projection1 = new Matrix.OrthographicProjection(-3, 3, -2, 2, 13, 150);
+		Matrix projection2 = new Matrix.OrthographicProjection(6, 4, 13, 150);
+		assertEquals(true, projection1.equals(projection2));
+	}
+	
 }
