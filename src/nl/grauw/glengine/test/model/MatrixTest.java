@@ -177,7 +177,7 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testIdentityMatrix() {
-		Matrix matrix = new Matrix.Identity();
+		Matrix matrix = Matrix.IDENTITY;
 		Matrix vector = new Matrix(1, 4, 4, 5, 6, 7);
 		Matrix product = matrix.multiply(vector);
 		assertEquals(true, product.equals(vector));
