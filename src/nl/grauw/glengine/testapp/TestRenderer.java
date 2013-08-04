@@ -30,8 +30,8 @@ public class TestRenderer extends GLEngineRenderer {
 	}
 	
 	@Override
-	public void onDrawFrame(GLContext context) {
-		context.getColorBuffer().clear();
+	public void onDrawFrame(GLContext gl) {
+		gl.getColorBuffer().clear();
 //		context.clear(true, false, false);  // use when clearing multiple buffers
 		
 		FloatBuffer vertices = Utils.createFloatBuffer(new float[] {
@@ -47,36 +47,36 @@ public class TestRenderer extends GLEngineRenderer {
 		});
 		
 		Program program = material.getProgram();
-		context.useProgram(program);
-		context.setVertexAttribPointer("position", 3, 0, vertices);
-		context.enableVertexAttribArray("position");
-		context.setVertexAttribPointer("texCoord", 2, 0, texCoords);
-		context.enableVertexAttribArray("texCoord");
+		gl.useProgram(program);
+		gl.setVertexAttribPointer("position", 3, 0, vertices);
+		gl.enableVertexAttribArray("position");
+		gl.setVertexAttribPointer("texCoord", 2, 0, texCoords);
+		gl.enableVertexAttribArray("texCoord");
 		program.setUniformValue("color.color", 1, 0, 0, 1);
 		program.setUniformValue("sinTime", (float)Math.sin((SystemClock.uptimeMillis() - startTime) / 1000f));
-		program.setUniformValue("texture", context.getActiveTextureUnit());
+		program.setUniformValue("texture", gl.getActiveTextureUnit());
 		
-		context.drawArrays(PrimitiveType.TRIANGLES, 0, 3);
+		gl.drawArrays(PrimitiveType.TRIANGLES, 0, 3);
 	}
 
 	@Override
-	public void onSurfaceChanged(GLContext context, int width, int height) {
-		context.setViewport(0, 0, width, height);
+	public void onSurfaceChanged(GLContext gl, int width, int height) {
+		gl.setViewport(0, 0, width, height);
 	}
 
 	@Override
-	public void onSurfaceCreated(GLContext context, EGLConfig config) {
-		material.compile(context);
+	public void onSurfaceCreated(GLContext gl, EGLConfig config) {
+		material.compile(gl);
 		
-		context.releaseShaderCompiler();
+		gl.releaseShaderCompiler();
 		
-		Texture2D texture = context.getActiveTextureUnit().getDefaultTexture2D();
+		Texture2D texture = gl.getActiveTextureUnit().getDefaultTexture2D();
 		texture.setImage(0, textureBitmap);
 		texture.generateMipmaps();
 		texture.setMinificationFilter(MinificationFilter.LINEAR_MIPMAP_LINEAR);
 		texture.setMagnificationFilter(MagnificationFilter.LINEAR);
 		
-		context.getColorBuffer().setClearColor(0, 0, 0.5f, 1);
+		gl.getColorBuffer().setClearColor(0, 0, 0.5f, 1);
 	}
 	
 }
