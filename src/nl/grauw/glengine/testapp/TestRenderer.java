@@ -35,22 +35,18 @@ public class TestRenderer extends GLEngineRenderer {
 //		context.clear(true, false, false);  // use when clearing multiple buffers
 		
 		FloatBuffer vertices = Utils.createFloatBuffer(new float[] {
-			 0.0f,  0.5f, 0.0f,
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f
-		});
-		
-		FloatBuffer texCoords = Utils.createFloatBuffer(new float[] {
-			 0.5f, -2.0f,
-			-1.0f,  2.0f,
-			 2.0f,  2.0f
+			 0.0f,  0.5f, 0.0f,     0.5f, -2.0f,
+			-0.5f, -0.5f, 0.0f,    -1.0f,  2.0f,
+			 0.5f, -0.5f, 0.0f,     2.0f,  2.0f
 		});
 		
 		Program program = material.getProgram();
 		gl.useProgram(program);
-		gl.setVertexAttribPointer("position", 3, 0, vertices);
+		vertices.position(0);
+		gl.setVertexAttribPointer("position", 3, 20, vertices);
 		gl.enableVertexAttribArray("position");
-		gl.setVertexAttribPointer("texCoord", 2, 0, texCoords);
+		vertices.position(3);
+		gl.setVertexAttribPointer("texCoord", 2, 20, vertices);
 		gl.enableVertexAttribArray("texCoord");
 		program.setUniformValue("color.color", 1, 0, 0, 1);
 		program.setUniformValue("sinTime", (float)Math.sin((SystemClock.uptimeMillis() - startTime) / 1000f));
