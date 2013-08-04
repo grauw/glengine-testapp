@@ -8,8 +8,8 @@ import android.graphics.Bitmap;
 import android.os.SystemClock;
 
 import nl.grauw.glengine.GLEngineRenderer;
-import nl.grauw.glengine.gl.Context;
-import nl.grauw.glengine.gl.Context.PrimitiveType;
+import nl.grauw.glengine.gl.GLContext;
+import nl.grauw.glengine.gl.GLContext.PrimitiveType;
 import nl.grauw.glengine.gl.Program;
 import nl.grauw.glengine.gl.Texture.MagnificationFilter;
 import nl.grauw.glengine.gl.Texture.MinificationFilter;
@@ -30,7 +30,7 @@ public class TestRenderer extends GLEngineRenderer {
 	}
 	
 	@Override
-	public void onDrawFrame(Context context) {
+	public void onDrawFrame(GLContext context) {
 		context.getColorBuffer().clear();
 //		context.clear(true, false, false);  // use when clearing multiple buffers
 		
@@ -60,12 +60,12 @@ public class TestRenderer extends GLEngineRenderer {
 	}
 
 	@Override
-	public void onSurfaceChanged(Context context, int width, int height) {
+	public void onSurfaceChanged(GLContext context, int width, int height) {
 		context.setViewport(0, 0, width, height);
 	}
 
 	@Override
-	public void onSurfaceCreated(Context context, EGLConfig config) {
+	public void onSurfaceCreated(GLContext context, EGLConfig config) {
 		material.compile(context);
 		
 		context.releaseShaderCompiler();
