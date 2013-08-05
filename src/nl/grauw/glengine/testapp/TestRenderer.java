@@ -10,10 +10,13 @@ import nl.grauw.glengine.gl.Texture.MagnificationFilter;
 import nl.grauw.glengine.gl.Texture.MinificationFilter;
 import nl.grauw.glengine.gl.Texture2D;
 import nl.grauw.glengine.model.Matrix;
+import nl.grauw.glengine.model.Quaternion;
 import nl.grauw.glengine.scene.Material;
 import nl.grauw.glengine.scene.Shape;
+import nl.grauw.glengine.test.BenchmarkRunner;
+import nl.grauw.glengine.test.BenchmarkRunner.Benchmark;
 
-public class TestRenderer extends GLEngineRenderer {
+public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	
 	private final Material material;
 	private final Shape testShape;
@@ -53,6 +56,24 @@ public class TestRenderer extends GLEngineRenderer {
 		texture.setMagnificationFilter(MagnificationFilter.LINEAR);
 		
 		gl.getColorBuffer().setClearColor(0, 0, 0.5f, 1);
+		
+//		runBenchmark();
+	}
+	
+	public void runBenchmark() {
+		new BenchmarkRunner().run(5, this);
+	}
+	
+	public Object benchmark() {
+		Matrix projection = new Matrix.OrthographicProjection(-3, 2, -2, 5, 13, 151);
+		Matrix rotation = new Matrix.Rotation(new Quaternion.EulerXYZ(1.3f, 2.2f, 3.1f));
+		Matrix output = Matrix.IDENTITY;
+		
+		for (int i = 0; i < 100000; i++) {
+			output = output.multiply(projection).multiply(rotation);
+		}
+		
+		return output;
 	}
 	
 }
