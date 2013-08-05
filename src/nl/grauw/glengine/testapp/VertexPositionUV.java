@@ -4,8 +4,7 @@ import java.nio.ByteBuffer;
 
 import nl.grauw.glengine.model.Point;
 import nl.grauw.glengine.model.Point2;
-import nl.grauw.glengine.model.VertexArray.Vertex;
-import nl.grauw.glengine.model.VertexArray.VertexInfo;
+import nl.grauw.glengine.model.Vertex;
 
 public class VertexPositionUV implements Vertex {
 	
