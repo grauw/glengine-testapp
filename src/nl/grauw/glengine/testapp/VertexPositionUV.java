@@ -2,18 +2,18 @@ package nl.grauw.glengine.testapp;
 
 import java.nio.ByteBuffer;
 
-import nl.grauw.glengine.model.Point;
-import nl.grauw.glengine.model.Point2;
+import nl.grauw.glengine.model.Vector2;
+import nl.grauw.glengine.model.Vector3;
 import nl.grauw.glengine.model.Vertex;
 
 public class VertexPositionUV implements Vertex {
 	
-	Point position;
-	Point2 uv;
+	Vector3 position;
+	Vector2 uv;
 	
-	public static final VertexInfo vertexInfo = new VertexInfo(Point.attributeInfo, Point2.attributeInfo);
+	public static final VertexInfo vertexInfo = new VertexInfo(Vector3.attributeInfo, Vector2.attributeInfo);
 	
-	public VertexPositionUV(Point position, Point2 uv) {
+	public VertexPositionUV(Vector3 position, Vector2 uv) {
 		this.position = position;
 		this.uv = uv;
 	}
