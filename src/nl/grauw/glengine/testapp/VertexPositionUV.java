@@ -1,10 +1,9 @@
 package nl.grauw.glengine.testapp;
 
-import java.nio.ByteBuffer;
-
 import nl.grauw.glengine.model.Vector2;
 import nl.grauw.glengine.model.Vector3;
 import nl.grauw.glengine.model.Vertex;
+import nl.grauw.glengine.model.VertexArray;
 
 public class VertexPositionUV extends Vertex {
 	
@@ -22,9 +21,9 @@ public class VertexPositionUV extends Vertex {
 	}
 	
 	@Override
-	public void write(ByteBuffer buffer) {
-		writeFloat3(buffer, position);
-		writeFloat2(buffer, uv);
+	public void write(VertexArray array) {
+		array.writeFloat3(position);
+		array.writeFloat2(uv);
 	}
 	
 	@Override
