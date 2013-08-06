@@ -7,31 +7,24 @@ import nl.grauw.glengine.gl.GLContext.PrimitiveType;
 import nl.grauw.glengine.model.Matrix;
 import nl.grauw.glengine.model.Vector2;
 import nl.grauw.glengine.model.Vector3;
-import nl.grauw.glengine.model.Vertex;
 import nl.grauw.glengine.scene.Material;
 import nl.grauw.glengine.scene.Shape;
 
 public class TestShape extends Shape {
 	
-	private final Vertex[] vertices;
 	private Material material;
 	private final long startTime;
 	
 	public TestShape(Material material) {
 		this.material = material;
 		
-		vertices = new Vertex[] {
+		setVertices(
 			new VertexPositionUV(new Vector3( 0.0f,  0.5f, 0.0f), new Vector2( 0.5f, -2.0f)),
 			new VertexPositionUV(new Vector3(-0.5f, -0.5f, 0.0f), new Vector2(-1.0f,  2.0f)),
 			new VertexPositionUV(new Vector3( 0.5f, -0.5f, 0.0f), new Vector2( 2.0f,  2.0f))
-		};
+		);
 		
 		startTime = SystemClock.uptimeMillis();
-	}
-	
-	@Override
-	protected Vertex[] getVertices() {
-		return vertices;
 	}
 	
 	@Override
