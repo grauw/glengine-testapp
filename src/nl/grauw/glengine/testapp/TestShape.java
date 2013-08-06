@@ -38,8 +38,6 @@ public class TestShape extends Shape {
 	public void draw(GLContext gl, Matrix transform) {
 		Program program = material.getProgram();
 		gl.useProgram(program);
-		gl.enableVertexAttribArray("position");
-		gl.enableVertexAttribArray("texCoord");
 		program.setUniformValue("color.color", 1, 0, 0, 1);
 		program.setUniformValue("sinTime", (float)Math.sin((SystemClock.uptimeMillis() - startTime) / 1000f));
 		program.setUniformValue("texture", gl.getActiveTextureUnit());
