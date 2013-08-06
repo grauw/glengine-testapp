@@ -5,13 +5,18 @@ import java.nio.ByteBuffer;
 import nl.grauw.glengine.model.Vector2;
 import nl.grauw.glengine.model.Vector3;
 import nl.grauw.glengine.model.Vertex;
+import nl.grauw.glengine.model.VertexAttribute.AttributeInfo;
+import nl.grauw.glengine.model.VertexAttribute.AttributeType;
 
-public class VertexPositionUV implements Vertex {
+public class VertexPositionUV extends Vertex {
 	
 	Vector3 position;
 	Vector2 uv;
 	
-	public static final VertexInfo vertexInfo = new VertexInfo(Vector3.attributeInfo, Vector2.attributeInfo);
+	public static final VertexInfo vertexInfo = new VertexInfo(
+		new AttributeInfo(3, AttributeType.FLOAT),
+		new AttributeInfo(2, AttributeType.FLOAT)
+	);
 	
 	public VertexPositionUV(Vector3 position, Vector2 uv) {
 		this.position = position;
@@ -20,8 +25,8 @@ public class VertexPositionUV implements Vertex {
 	
 	@Override
 	public void write(ByteBuffer buffer) {
-		position.write(buffer);
-		uv.write(buffer);
+		writeFloat3(buffer, position);
+		writeFloat2(buffer, uv);
 	}
 	
 	@Override
