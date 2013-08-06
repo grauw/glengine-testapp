@@ -5,8 +5,6 @@ import java.nio.ByteBuffer;
 import nl.grauw.glengine.model.Vector2;
 import nl.grauw.glengine.model.Vector3;
 import nl.grauw.glengine.model.Vertex;
-import nl.grauw.glengine.model.VertexAttribute.AttributeInfo;
-import nl.grauw.glengine.model.VertexAttribute.AttributeType;
 
 public class VertexPositionUV extends Vertex {
 	
