@@ -46,6 +46,7 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	@Override
 	public void onSurfaceCreated(GLContext gl, EGLConfig config) {
 		material.compile(gl);
+		testShape.initialize(gl);
 		
 		gl.releaseShaderCompiler();
 		
