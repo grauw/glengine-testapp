@@ -24,6 +24,8 @@ public class TestShape extends Shape {
 			new VertexPositionUV(new Vector3( 0.5f, -0.5f, 0.0f), new Vector2( 2.0f,  2.0f))
 		);
 		
+		linkAttributes("position", "texCoord");
+		
 		startTime = SystemClock.uptimeMillis();
 	}
 	
@@ -35,7 +37,7 @@ public class TestShape extends Shape {
 		program.setUniformValue("sinTime", (float)Math.sin((SystemClock.uptimeMillis() - startTime) / 1000f));
 		program.setUniformValue("texture", gl.getActiveTextureUnit());
 		
-		drawArrays(gl, PrimitiveType.TRIANGLES, "position", "texCoord");
+		drawArrays(gl, PrimitiveType.TRIANGLES);
 	}
 	
 }
