@@ -24,7 +24,7 @@ public class TestShape extends Shape {
 			new VertexPositionUV(new Vector3( 0.5f, -0.5f, 0.0f), new Vector2( 2.0f,  2.0f))
 		);
 		
-		linkAttributes("position", "texCoord");
+		linkAttributes("position", "uv");
 		
 		startTime = SystemClock.uptimeMillis();
 	}

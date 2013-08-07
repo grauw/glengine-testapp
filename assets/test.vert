@@ -1,8 +1,8 @@
 attribute vec4 position;
-attribute vec2 texCoord;
-varying vec2 v_texCoord;
+attribute vec2 uv;
+varying vec2 v_uv;
 
 void main() {
 	gl_Position = position;
-	v_texCoord = texCoord;
+	v_uv = uv;
 }
