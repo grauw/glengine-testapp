@@ -7,6 +7,18 @@ import nl.grauw.glengine.model.Vector2;
 
 public class Matrix2x2Test extends TestCase {
 	
+	public void testGetColumn() {
+		Matrix2x2 matrix = new Matrix2x2(4, 5, 6, 7);
+		assertEquals(true, matrix.getColumn(0).equals(new Vector2(4, 5)));
+		assertEquals(true, matrix.getColumn(1).equals(new Vector2(6, 7)));
+	}
+	
+	public void testGetRow() {
+		Matrix2x2 matrix = new Matrix2x2(4, 5, 6, 7);
+		assertEquals(true, matrix.getRow(0).equals(new Vector2(4, 6)));
+		assertEquals(true, matrix.getRow(1).equals(new Vector2(5, 7)));
+	}
+	
 	public void testIdentity() {
 		Matrix2x2 matrix = Matrix2x2.IDENTITY;
 		Vector2 vector = new Vector2(4, 5);

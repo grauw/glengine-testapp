@@ -8,6 +8,20 @@ import nl.grauw.glengine.test.Utils;
 
 public class Matrix3x3Test extends TestCase {
 	
+	public void testGetColumn() {
+		Matrix3x3 matrix = new Matrix3x3(4, 5, 6, 7, 8, 9, 10, 11, 12);
+		assertEquals(true, matrix.getColumn(0).equals(new Vector3(4, 5, 6)));
+		assertEquals(true, matrix.getColumn(1).equals(new Vector3(7, 8, 9)));
+		assertEquals(true, matrix.getColumn(2).equals(new Vector3(10, 11, 12)));
+	}
+	
+	public void testGetRow() {
+		Matrix3x3 matrix = new Matrix3x3(4, 5, 6, 7, 8, 9, 10, 11, 12);
+		assertEquals(true, matrix.getRow(0).equals(new Vector3(4, 7, 10)));
+		assertEquals(true, matrix.getRow(1).equals(new Vector3(5, 8, 11)));
+		assertEquals(true, matrix.getRow(2).equals(new Vector3(6, 9, 12)));
+	}
+	
 	public void testIdentity() {
 		Matrix3x3 matrix = Matrix3x3.IDENTITY;
 		Vector3 vector = new Vector3(4, 5, 6);
