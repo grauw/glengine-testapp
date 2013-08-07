@@ -17,6 +17,8 @@ public class TestShape extends Shape {
 	private final long startTime;
 	
 	public TestShape(Material material) {
+		super(PrimitiveType.TRIANGLES);
+		
 		this.material = material;
 		
 		setVertices(
@@ -36,7 +38,7 @@ public class TestShape extends Shape {
 		program.setUniformValue("sinTime", (float)Math.sin((SystemClock.uptimeMillis() - startTime) / 1000f));
 		program.setUniformValue("texture", gl.getActiveTextureUnit());
 		
-		draw(gl, PrimitiveType.TRIANGLES);
+		draw(gl);
 	}
 	
 }
