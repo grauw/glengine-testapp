@@ -11,8 +11,8 @@ public class VertexPositionUV extends Vertex {
 	Vector2 uv;
 	
 	public static final VertexInfo vertexInfo = new VertexInfo(
-		new AttributeInfo(3, AttributeType.FLOAT),
-		new AttributeInfo(2, AttributeType.FLOAT)
+		new AttributeInfo("position", 3, AttributeType.FLOAT),
+		new AttributeInfo("uv", 2, AttributeType.FLOAT)
 	);
 	
 	public VertexPositionUV(Vector3 position, Vector2 uv) {
