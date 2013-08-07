@@ -3,6 +3,7 @@ package nl.grauw.glengine.testapp;
 import javax.microedition.khronos.egl.EGLConfig;
 
 import android.graphics.Bitmap;
+import android.os.SystemClock;
 
 import nl.grauw.glengine.GLEngineRenderer;
 import nl.grauw.glengine.gl.GLContext;
@@ -12,29 +13,35 @@ import nl.grauw.glengine.gl.Texture2D;
 import nl.grauw.glengine.model.Matrix;
 import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.model.Quaternion;
-import nl.grauw.glengine.scene.Material;
 import nl.grauw.glengine.scene.Shape;
 import nl.grauw.glengine.test.BenchmarkRunner;
 import nl.grauw.glengine.test.BenchmarkRunner.Benchmark;
 
 public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	
-	private final Material material;
+	private final Materials materials;
 	private final Shape testShape;
 	
 	private final Bitmap textureBitmap;
 	
-	public TestRenderer(Material material, Bitmap textureImage) {
-		this.material = material;
+	private long lastUpdateTime = 0;
+	
+	public TestRenderer(Materials materials, Bitmap textureImage) {
+		this.materials = materials;
 		this.textureBitmap = textureImage;
 		
-		this.testShape = new TestShape(material);
+		testShape = new TestShape(materials.getTestMaterial());
 	}
 	
 	@Override
 	public void onDrawFrame(GLContext gl) {
 		gl.getColorBuffer().clear();
 //		context.clear(true, false, false);  // use when clearing multiple buffers
+		
+		long time = SystemClock.uptimeMillis();
+		if (lastUpdateTime != 0)
+			materials.update((int)(time - lastUpdateTime));
+		lastUpdateTime = time;
 		
 		testShape.draw(gl, Matrix4x4.IDENTITY);
 	}
@@ -46,10 +53,8 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	
 	@Override
 	public void onSurfaceCreated(GLContext gl, EGLConfig config) {
-		material.compile(gl);
+		materials.initialize(gl);
 		testShape.initialize(gl);
-		
-		gl.releaseShaderCompiler();
 		
 		Texture2D texture = gl.getActiveTextureUnit().getDefaultTexture2D();
 		texture.setImage(0, textureBitmap);
