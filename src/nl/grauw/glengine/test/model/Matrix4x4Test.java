@@ -8,28 +8,28 @@ import nl.grauw.glengine.test.Utils;
 
 public class Matrix4x4Test extends TestCase {
 	
-	public void testIdentityMatrix() {
+	public void testIdentity() {
 		Matrix4x4 matrix = Matrix4x4.IDENTITY;
 		Vector4 vector = new Vector4(4, 5, 6, 7);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(true, product.equals(vector));
 	}
 	
-	public void testTranslationMatrix() {
+	public void testTranslation() {
 		Matrix4x4 matrix = new Matrix4x4.Translation(2, 4, -3);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(true, product.equals(new Vector4(6, 9, 3, 1)));
 	}
 	
-	public void testScaleMatrix() {
+	public void testScale() {
 		Matrix4x4 matrix = new Matrix4x4.Scale(3, 0.2f, -0.5f);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(true, product.equals(new Vector4(12, 1, -3, 1)));
 	}
 	
-	public void testXRotationMatrix() {
+	public void testXRotation() {
 		Matrix4x4 matrix1 = new Matrix4x4.XRotation(1);
 		Matrix4x4 matrix2 = new Matrix4x4.Rotation(1, 0, 0, 1);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
@@ -41,7 +41,7 @@ public class Matrix4x4Test extends TestCase {
 		Utils.assertFloatEquals(product1.getW(), product2.getW());
 	}
 	
-	public void testYRotationMatrix() {
+	public void testYRotation() {
 		Matrix4x4 matrix1 = new Matrix4x4.YRotation(2);
 		Matrix4x4 matrix2 = new Matrix4x4.Rotation(0, 1, 0, 2);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
@@ -53,7 +53,7 @@ public class Matrix4x4Test extends TestCase {
 		Utils.assertFloatEquals(product1.getW(), product2.getW());
 	}
 	
-	public void testZRotationMatrix() {
+	public void testZRotation() {
 		Matrix4x4 matrix1 = new Matrix4x4.ZRotation(3);
 		Matrix4x4 matrix2 = new Matrix4x4.Rotation(0, 0, 1, 3);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
