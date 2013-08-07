@@ -3,57 +3,58 @@ package nl.grauw.glengine.test.model;
 import junit.framework.TestCase;
 
 import nl.grauw.glengine.model.Matrix;
+import nl.grauw.glengine.model.Matrix.AnyMatrix;
 
 public class MatrixTest extends TestCase {
 	
 	public void testCopyConstructor() {
-		Matrix other = new Matrix(2, 2, 4, 5, 6, 7);
-		Matrix matrix = new Matrix(2, 2, other);
+		Matrix other = new AnyMatrix(2, 2, 4, 5, 6, 7);
+		Matrix matrix = new AnyMatrix(2, 2, other);
 		assertEquals(true, matrix.equals(other));
 	}
 	
 	public void testCopyConstructor_Grow() {
-		Matrix other = new Matrix(2, 2, 4, 5, 6, 7);
-		Matrix matrix = new Matrix(3, 3, other);
-		assertEquals(true, matrix.equals(new Matrix(3, 3, 4, 5, 0, 6, 7, 0, 0, 0, 1)));
+		Matrix other = new AnyMatrix(2, 2, 4, 5, 6, 7);
+		Matrix matrix = new AnyMatrix(3, 3, other);
+		assertEquals(true, matrix.equals(new AnyMatrix(3, 3, 4, 5, 0, 6, 7, 0, 0, 0, 1)));
 	}
 	
 	public void testCopyConstructor_Shrink() {
-		Matrix other = new Matrix(3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
-		Matrix matrix = new Matrix(2, 2, other);
-		assertEquals(true, matrix.equals(new Matrix(2, 2, 4, 5, 7, 8)));
+		Matrix other = new AnyMatrix(3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+		Matrix matrix = new AnyMatrix(2, 2, other);
+		assertEquals(true, matrix.equals(new AnyMatrix(2, 2, 4, 5, 7, 8)));
 	}
 	
 	public void testCopyConstructor_DiagonalVertical() {
-		Matrix other = new Matrix(1, 3, 4, 5, 6);
-		Matrix matrix = new Matrix(3, 3, other);
-		assertEquals(true, matrix.equals(new Matrix(3, 3, 4, 5, 6, 0, 1, 0, 0, 0, 1)));
+		Matrix other = new AnyMatrix(1, 3, 4, 5, 6);
+		Matrix matrix = new AnyMatrix(3, 3, other);
+		assertEquals(true, matrix.equals(new AnyMatrix(3, 3, 4, 5, 6, 0, 1, 0, 0, 0, 1)));
 	}
 	
 	public void testCopyConstructor_DiagonalHorizontal() {
-		Matrix other = new Matrix(3, 1, 4, 5, 6);
-		Matrix matrix = new Matrix(4, 2, other);
-		assertEquals(true, matrix.equals(new Matrix(4, 2, 4, 0, 5, 1, 6, 0, 0, 0)));
+		Matrix other = new AnyMatrix(3, 1, 4, 5, 6);
+		Matrix matrix = new AnyMatrix(4, 2, other);
+		assertEquals(true, matrix.equals(new AnyMatrix(4, 2, 4, 0, 5, 1, 6, 0, 0, 0)));
 	}
 	
 	public void testCopyConstructor_Flipped() {
-		Matrix other = new Matrix(3, 1, 4, 5, 6);
-		Matrix matrix = new Matrix(1, 3, other);
-		assertEquals(true, matrix.equals(new Matrix(1, 3, 4, 0, 0)));
+		Matrix other = new AnyMatrix(3, 1, 4, 5, 6);
+		Matrix matrix = new AnyMatrix(1, 3, other);
+		assertEquals(true, matrix.equals(new AnyMatrix(1, 3, 4, 0, 0)));
 	}
 	
 	public void testGetColumns() {
-		Matrix matrix = new Matrix(3, 1, 0, 0, 0);
+		Matrix matrix = new AnyMatrix(3, 1, 0, 0, 0);
 		assertEquals(3, matrix.getColumns());
 	}
 	
 	public void testGetRows() {
-		Matrix matrix = new Matrix(1, 3, 0, 0, 0);
+		Matrix matrix = new AnyMatrix(1, 3, 0, 0, 0);
 		assertEquals(3, matrix.getRows());
 	}
 	
 	public void testGetElement() {
-		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		assertEquals(6.0f, matrix.getElement(0, 0));
 		assertEquals(5.0f, matrix.getElement(0, 1));
 		assertEquals(4.0f, matrix.getElement(0, 2));
@@ -63,7 +64,7 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testGetElements() {
-		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		float[] elements = matrix.getElements();
 		assertEquals(6, elements.length);
 		assertEquals(6.0f, elements[0]);
@@ -75,30 +76,30 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testEquals() {
-		Matrix matrix1 = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Matrix matrix2 = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		assertEquals(true, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_DifferentData() {
-		Matrix matrix1 = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Matrix matrix2 = new Matrix(2, 3, 6, 5, 4, 2, 2, 1);
+		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 2, 2, 1);
 		assertEquals(false, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_DifferentDimensions() {
-		Matrix matrix1 = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Matrix matrix2 = new Matrix(3, 2, 6, 5, 4, 3, 2, 1);
+		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix2 = new AnyMatrix(3, 2, 6, 5, 4, 3, 2, 1);
 		assertEquals(false, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_Self() {
-		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		assertEquals(true, matrix.equals(matrix));
 	}
 	
 	public void testTranspose() {
-		Matrix matrix = new Matrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		Matrix transposed = matrix.transpose();
 		assertNotSame(matrix, transposed);
 		assertEquals(3, transposed.getColumns());
@@ -112,8 +113,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_Identity() {
-		Matrix matrix1 = new Matrix(2, 2, 6, 5, 4, 3);
-		Matrix matrix2 = new Matrix(2, 2, 1, 0, 0, 1);
+		Matrix matrix1 = new AnyMatrix(2, 2, 6, 5, 4, 3);
+		Matrix matrix2 = new AnyMatrix(2, 2, 1, 0, 0, 1);
 		Matrix product = matrix1.multiply(matrix2);
 		assertEquals(2, product.getColumns());
 		assertEquals(2, product.getRows());
@@ -124,8 +125,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_ScaleTranslate() {
-		Matrix scaleMatrix = new Matrix(3, 3, 2, 0, 0, 0, 0.5f, 0, 0, 0, 1);
-		Matrix translateMatrix = new Matrix(3, 3, 1, 0, 0, 0, 1, 0, -3, 2, 1);
+		Matrix scaleMatrix = new AnyMatrix(3, 3, 2, 0, 0, 0, 0.5f, 0, 0, 0, 1);
+		Matrix translateMatrix = new AnyMatrix(3, 3, 1, 0, 0, 0, 1, 0, -3, 2, 1);
 		Matrix product = scaleMatrix.multiply(translateMatrix);
 		assertEquals(3, product.getColumns());
 		assertEquals(3, product.getRows());
@@ -141,8 +142,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_IdentityVector() {
-		Matrix matrix = new Matrix(3, 3, 1, 0, 0, 0, 1, 0, 0, 0, 1);
-		Matrix vector = new Matrix(1, 3, 5, 4, 3);
+		Matrix matrix = new AnyMatrix(3, 3, 1, 0, 0, 0, 1, 0, 0, 0, 1);
+		Matrix vector = new AnyMatrix(1, 3, 5, 4, 3);
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
@@ -152,8 +153,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_VectorIdentity() {
-		Matrix matrix = new Matrix(3, 3, 1, 0, 0, 0, 1, 0, 0, 0, 1);
-		Matrix vector = new Matrix(3, 1, 5, 4, 3);
+		Matrix matrix = new AnyMatrix(3, 3, 1, 0, 0, 0, 1, 0, 0, 0, 1);
+		Matrix vector = new AnyMatrix(3, 1, 5, 4, 3);
 		Matrix product = vector.multiply(matrix);
 		assertEquals(3, product.getColumns());
 		assertEquals(1, product.getRows());
@@ -163,8 +164,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_TranslateVector() {
-		Matrix matrix = new Matrix(3, 3, 1, 0, 0, 0, 1, 0, -3, 2, 1);
-		Matrix vector = new Matrix(1, 3, 5, 4, 1);
+		Matrix matrix = new AnyMatrix(3, 3, 1, 0, 0, 0, 1, 0, -3, 2, 1);
+		Matrix vector = new AnyMatrix(1, 3, 5, 4, 1);
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
@@ -174,8 +175,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_ScaleVector() {
-		Matrix matrix = new Matrix(3, 3, 2, 0, 0, 0, 0.5f, 0, 0, 0, 1);
-		Matrix vector = new Matrix(1, 3, 2, 6, 1);
+		Matrix matrix = new AnyMatrix(3, 3, 2, 0, 0, 0, 0.5f, 0, 0, 0, 1);
+		Matrix vector = new AnyMatrix(1, 3, 2, 6, 1);
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
@@ -185,8 +186,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_RotateVector() {
-		Matrix matrix = new Matrix(3, 3, (float)Math.cos(Math.PI/2), (float)Math.sin(Math.PI/2), 0, (float)-Math.sin(Math.PI/2), (float)Math.cos(Math.PI/2), 0, 0, 0, 1);
-		Matrix vector = new Matrix(1, 3, 4, 3, 1);
+		Matrix matrix = new AnyMatrix(3, 3, (float)Math.cos(Math.PI/2), (float)Math.sin(Math.PI/2), 0, (float)-Math.sin(Math.PI/2), (float)Math.cos(Math.PI/2), 0, 0, 0, 1);
+		Matrix vector = new AnyMatrix(1, 3, 4, 3, 1);
 		Matrix product = matrix.multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
@@ -196,10 +197,10 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testMultiply_TranslateScaleRotateVector() {
-		Matrix translateMatrix = new Matrix(3, 3, 1, 0, 0, 0, 1, 0, -3, 2, 1);
-		Matrix scaleMatrix = new Matrix(3, 3, 2, 0, 0, 0, 0.5f, 0, 0, 0, 1);
-		Matrix rotateMatrix = new Matrix(3, 3, (float)Math.cos(Math.PI/2), (float)Math.sin(Math.PI/2), 0, (float)-Math.sin(Math.PI/2), (float)Math.cos(Math.PI/2), 0, 0, 0, 1);
-		Matrix vector = new Matrix(1, 3, 5, 4, 1);
+		Matrix translateMatrix = new AnyMatrix(3, 3, 1, 0, 0, 0, 1, 0, -3, 2, 1);
+		Matrix scaleMatrix = new AnyMatrix(3, 3, 2, 0, 0, 0, 0.5f, 0, 0, 0, 1);
+		Matrix rotateMatrix = new AnyMatrix(3, 3, (float)Math.cos(Math.PI/2), (float)Math.sin(Math.PI/2), 0, (float)-Math.sin(Math.PI/2), (float)Math.cos(Math.PI/2), 0, 0, 0, 1);
+		Matrix vector = new AnyMatrix(1, 3, 5, 4, 1);
 		Matrix product = rotateMatrix.multiply(scaleMatrix).multiply(translateMatrix).multiply(vector);
 		assertEquals(1, product.getColumns());
 		assertEquals(3, product.getRows());
