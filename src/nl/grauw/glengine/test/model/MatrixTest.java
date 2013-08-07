@@ -6,6 +6,42 @@ import nl.grauw.glengine.model.Matrix;
 
 public class MatrixTest extends TestCase {
 	
+	public void testCopyConstructor() {
+		Matrix other = new Matrix(2, 2, 4, 5, 6, 7);
+		Matrix matrix = new Matrix(2, 2, other);
+		assertEquals(true, matrix.equals(other));
+	}
+	
+	public void testCopyConstructor_Grow() {
+		Matrix other = new Matrix(2, 2, 4, 5, 6, 7);
+		Matrix matrix = new Matrix(3, 3, other);
+		assertEquals(true, matrix.equals(new Matrix(3, 3, 4, 5, 0, 6, 7, 0, 0, 0, 1)));
+	}
+	
+	public void testCopyConstructor_Shrink() {
+		Matrix other = new Matrix(3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
+		Matrix matrix = new Matrix(2, 2, other);
+		assertEquals(true, matrix.equals(new Matrix(2, 2, 4, 5, 7, 8)));
+	}
+	
+	public void testCopyConstructor_DiagonalVertical() {
+		Matrix other = new Matrix(1, 3, 4, 5, 6);
+		Matrix matrix = new Matrix(3, 3, other);
+		assertEquals(true, matrix.equals(new Matrix(3, 3, 4, 5, 6, 0, 1, 0, 0, 0, 1)));
+	}
+	
+	public void testCopyConstructor_DiagonalHorizontal() {
+		Matrix other = new Matrix(3, 1, 4, 5, 6);
+		Matrix matrix = new Matrix(4, 2, other);
+		assertEquals(true, matrix.equals(new Matrix(4, 2, 4, 0, 5, 1, 6, 0, 0, 0)));
+	}
+	
+	public void testCopyConstructor_Flipped() {
+		Matrix other = new Matrix(3, 1, 4, 5, 6);
+		Matrix matrix = new Matrix(1, 3, other);
+		assertEquals(true, matrix.equals(new Matrix(1, 3, 4, 0, 0)));
+	}
+	
 	public void testGetColumns() {
 		Matrix matrix = new Matrix(3, 1, 0, 0, 0);
 		assertEquals(3, matrix.getColumns());
