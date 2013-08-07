@@ -12,7 +12,7 @@ import nl.grauw.glengine.scene.Shape;
 
 public class TestShape extends Shape {
 	
-	private Material material;
+	private final Material material;
 	private final long startTime;
 	
 	public TestShape(Material material) {

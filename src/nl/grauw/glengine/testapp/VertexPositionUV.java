@@ -7,8 +7,8 @@ import nl.grauw.glengine.model.VertexArray;
 
 public class VertexPositionUV extends Vertex {
 	
-	Vector3 position;
-	Vector2 uv;
+	private final Vector3 position;
+	private final Vector2 uv;
 	
 	public static final VertexInfo vertexInfo = new VertexInfo(
 		new AttributeInfo("position", 3, AttributeType.FLOAT),

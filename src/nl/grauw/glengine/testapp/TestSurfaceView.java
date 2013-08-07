@@ -15,7 +15,7 @@ import android.opengl.GLSurfaceView;
 
 public class TestSurfaceView extends GLSurfaceView {
 	
-	private TestRenderer renderer;
+	private final TestRenderer renderer;
 	
 	public TestSurfaceView(Context context) {
 		super(context);

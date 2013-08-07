@@ -7,8 +7,8 @@ import junit.framework.TestCase;
 
 public class VariableTest extends TestCase {
 	
-	VariableType type;
-	Uniform uniform;
+	private VariableType type;
+	private Uniform uniform;
 	
 	@Override
 	protected void setUp() throws Exception {
