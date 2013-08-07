@@ -2,7 +2,7 @@ package nl.grauw.glengine.test.model;
 
 import nl.grauw.glengine.model.Matrix;
 import nl.grauw.glengine.model.Vector4;
-import nl.grauw.glengine.model.Matrix.Matrix4x4;
+import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.test.Utils;
 import junit.framework.TestCase;
 
@@ -179,29 +179,29 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testIdentityMatrix() {
-		Matrix4x4 matrix = Matrix.IDENTITY;
+		Matrix4x4 matrix = Matrix4x4.IDENTITY;
 		Vector4 vector = new Vector4(4, 5, 6, 7);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(true, product.equals(vector));
 	}
 	
 	public void testTranslationMatrix() {
-		Matrix4x4 matrix = new Matrix.Translation(2, 4, -3);
+		Matrix4x4 matrix = new Matrix4x4.Translation(2, 4, -3);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(true, product.equals(new Vector4(6, 9, 3, 1)));
 	}
 	
 	public void testScaleMatrix() {
-		Matrix4x4 matrix = new Matrix.Scale(3, 0.2f, -0.5f);
+		Matrix4x4 matrix = new Matrix4x4.Scale(3, 0.2f, -0.5f);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(true, product.equals(new Vector4(12, 1, -3, 1)));
 	}
 	
 	public void testXRotationMatrix() {
-		Matrix4x4 matrix1 = new Matrix.XRotation(1);
-		Matrix4x4 matrix2 = new Matrix.Rotation(1, 0, 0, 1);
+		Matrix4x4 matrix1 = new Matrix4x4.XRotation(1);
+		Matrix4x4 matrix2 = new Matrix4x4.Rotation(1, 0, 0, 1);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product1 = matrix1.multiply(vector);
 		Vector4 product2 = matrix2.multiply(vector);
@@ -212,8 +212,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testYRotationMatrix() {
-		Matrix4x4 matrix1 = new Matrix.YRotation(2);
-		Matrix4x4 matrix2 = new Matrix.Rotation(0, 1, 0, 2);
+		Matrix4x4 matrix1 = new Matrix4x4.YRotation(2);
+		Matrix4x4 matrix2 = new Matrix4x4.Rotation(0, 1, 0, 2);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product1 = matrix1.multiply(vector);
 		Vector4 product2 = matrix2.multiply(vector);
@@ -224,8 +224,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testZRotationMatrix() {
-		Matrix4x4 matrix1 = new Matrix.ZRotation(3);
-		Matrix4x4 matrix2 = new Matrix.Rotation(0, 0, 1, 3);
+		Matrix4x4 matrix1 = new Matrix4x4.ZRotation(3);
+		Matrix4x4 matrix2 = new Matrix4x4.Rotation(0, 0, 1, 3);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product1 = matrix1.multiply(vector);
 		Vector4 product2 = matrix2.multiply(vector);
@@ -236,7 +236,7 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testPerspectiveProjection() {
-		Matrix4x4 projection = new Matrix.PerspectiveProjection(-3, 3, -2, 2, 15, 115);
+		Matrix4x4 projection = new Matrix4x4.PerspectiveProjection(-3, 3, -2, 2, 15, 115);
 		Vector4 vector = new Vector4(1.5f, -5, -75, 1);
 		Vector4 product = projection.multiply(vector);
 		
@@ -250,13 +250,13 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testPerspectiveProjection_Constructors() {
-		Matrix4x4 projection1 = new Matrix.PerspectiveProjection(-3, 3, -2, 2, 13, 150);
-		Matrix4x4 projection2 = new Matrix.PerspectiveProjection(6, 4, 13, 150);
+		Matrix4x4 projection1 = new Matrix4x4.PerspectiveProjection(-3, 3, -2, 2, 13, 150);
+		Matrix4x4 projection2 = new Matrix4x4.PerspectiveProjection(6, 4, 13, 150);
 		assertEquals(true, projection1.equals(projection2));
 	}
 	
 	public void testOrthographicProjection() {
-		Matrix4x4 projection = new Matrix.OrthographicProjection(-3, 3, -2, 2, 15, 115);
+		Matrix4x4 projection = new Matrix4x4.OrthographicProjection(-3, 3, -2, 2, 15, 115);
 		Vector4 vector = new Vector4(1.5f, -5, -75, 1);
 		Vector4 product = projection.multiply(vector);
 		Utils.assertFloatEquals(0.5f, product.getX());
@@ -266,8 +266,8 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testOrthographicProjection_Constructors() {
-		Matrix4x4 projection1 = new Matrix.OrthographicProjection(-3, 3, -2, 2, 13, 150);
-		Matrix4x4 projection2 = new Matrix.OrthographicProjection(6, 4, 13, 150);
+		Matrix4x4 projection1 = new Matrix4x4.OrthographicProjection(-3, 3, -2, 2, 13, 150);
+		Matrix4x4 projection2 = new Matrix4x4.OrthographicProjection(6, 4, 13, 150);
 		assertEquals(true, projection1.equals(projection2));
 	}
 	

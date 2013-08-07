@@ -10,6 +10,7 @@ import nl.grauw.glengine.gl.Texture.MagnificationFilter;
 import nl.grauw.glengine.gl.Texture.MinificationFilter;
 import nl.grauw.glengine.gl.Texture2D;
 import nl.grauw.glengine.model.Matrix;
+import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.model.Quaternion;
 import nl.grauw.glengine.scene.Material;
 import nl.grauw.glengine.scene.Shape;
@@ -35,7 +36,7 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 		gl.getColorBuffer().clear();
 //		context.clear(true, false, false);  // use when clearing multiple buffers
 		
-		testShape.draw(gl, Matrix.IDENTITY);
+		testShape.draw(gl, Matrix4x4.IDENTITY);
 	}
 	
 	@Override
@@ -66,9 +67,9 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	}
 	
 	public Object benchmark() {
-		Matrix projection = new Matrix.OrthographicProjection(-3, 2, -2, 5, 13, 151);
-		Matrix rotation = new Matrix.Rotation(new Quaternion.EulerXYZ(1.3f, 2.2f, 3.1f));
-		Matrix output = Matrix.IDENTITY;
+		Matrix projection = new Matrix4x4.OrthographicProjection(-3, 2, -2, 5, 13, 151);
+		Matrix rotation = new Matrix4x4.Rotation(new Quaternion.EulerXYZ(1.3f, 2.2f, 3.1f));
+		Matrix output = Matrix4x4.IDENTITY;
 		
 		for (int i = 0; i < 100000; i++) {
 			output = output.multiply(projection).multiply(rotation);
