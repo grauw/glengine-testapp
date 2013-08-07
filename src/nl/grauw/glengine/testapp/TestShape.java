@@ -35,7 +35,7 @@ public class TestShape extends Shape {
 		program.setUniformValue("sinTime", (float)Math.sin((SystemClock.uptimeMillis() - startTime) / 1000f));
 		program.setUniformValue("texture", gl.getActiveTextureUnit());
 		
-		drawArrays(gl, PrimitiveType.TRIANGLES);
+		draw(gl, PrimitiveType.TRIANGLES);
 	}
 	
 }
