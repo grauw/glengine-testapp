@@ -1,9 +1,11 @@
 package nl.grauw.glengine.test.gl;
 
 import android.opengl.GLES20;
+
+import junit.framework.TestCase;
+
 import nl.grauw.glengine.gl.Variable.Uniform;
 import nl.grauw.glengine.gl.Variable.VariableType;
-import junit.framework.TestCase;
 
 public class VariableTest extends TestCase {
 	

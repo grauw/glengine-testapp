@@ -1,8 +1,7 @@
 package nl.grauw.glengine.testapp;
 
-import nl.grauw.glengine.testapp.TestSurfaceView;
-import android.os.Bundle;
 import android.app.Activity;
+import android.os.Bundle;
 import android.view.Menu;
 
 public class TestActivity extends Activity {

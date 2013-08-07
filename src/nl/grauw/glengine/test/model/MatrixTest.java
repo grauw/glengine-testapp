@@ -1,10 +1,11 @@
 package nl.grauw.glengine.test.model;
 
-import nl.grauw.glengine.model.Matrix;
-import nl.grauw.glengine.model.Vector4;
-import nl.grauw.glengine.model.Matrix4x4;
-import nl.grauw.glengine.test.Utils;
 import junit.framework.TestCase;
+
+import nl.grauw.glengine.model.Matrix;
+import nl.grauw.glengine.model.Matrix4x4;
+import nl.grauw.glengine.model.Vector4;
+import nl.grauw.glengine.test.Utils;
 
 public class MatrixTest extends TestCase {
 	

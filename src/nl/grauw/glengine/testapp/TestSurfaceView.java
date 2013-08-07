@@ -4,14 +4,14 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import nl.grauw.glengine.gl.GLEngineException;
-import nl.grauw.glengine.scene.Material;
-
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLSurfaceView;
+
+import nl.grauw.glengine.gl.GLEngineException;
+import nl.grauw.glengine.scene.Material;
 
 public class TestSurfaceView extends GLSurfaceView {
 	

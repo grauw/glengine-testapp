@@ -1,9 +1,10 @@
 package nl.grauw.glengine.testapp;
 
 import android.os.SystemClock;
+
 import nl.grauw.glengine.gl.GLContext;
-import nl.grauw.glengine.gl.Program;
 import nl.grauw.glengine.gl.GLContext.PrimitiveType;
+import nl.grauw.glengine.gl.Program;
 import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.model.Vector2;
 import nl.grauw.glengine.model.Vector3;
