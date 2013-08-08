@@ -2,8 +2,6 @@ package nl.grauw.glengine.testapp;
 
 import javax.microedition.khronos.egl.EGLConfig;
 
-import android.os.SystemClock;
-
 import nl.grauw.glengine.GLEngineRenderer;
 import nl.grauw.glengine.gl.GLContext;
 import nl.grauw.glengine.model.Matrix;
@@ -19,8 +17,6 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	private final Textures textures;
 	private final Shape testShape;
 	
-	private long lastUpdateTime = 0;
-	
 	public TestRenderer(Materials materials, Textures textures) {
 		this.materials = materials;
 		this.textures = textures;
@@ -29,14 +25,11 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	}
 	
 	@Override
-	public void onDrawFrame(GLContext gl) {
+	public void onDrawFrame(GLContext gl, int elapsed) {
 		gl.getColorBuffer().clear();
 //		context.clear(true, false, false);  // use when clearing multiple buffers
 		
-		long time = SystemClock.uptimeMillis();
-		if (lastUpdateTime != 0)
-			materials.update((int)(time - lastUpdateTime));
-		lastUpdateTime = time;
+		materials.update(elapsed);
 		
 		testShape.draw(gl, Matrix4x4.IDENTITY);
 	}
