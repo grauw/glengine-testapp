@@ -2,14 +2,10 @@ package nl.grauw.glengine.testapp;
 
 import javax.microedition.khronos.egl.EGLConfig;
 
-import android.graphics.Bitmap;
 import android.os.SystemClock;
 
 import nl.grauw.glengine.GLEngineRenderer;
 import nl.grauw.glengine.gl.GLContext;
-import nl.grauw.glengine.gl.Texture.MagnificationFilter;
-import nl.grauw.glengine.gl.Texture.MinificationFilter;
-import nl.grauw.glengine.gl.Texture2D;
 import nl.grauw.glengine.model.Matrix;
 import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.model.Quaternion;
@@ -20,15 +16,14 @@ import nl.grauw.glengine.test.BenchmarkRunner.Benchmark;
 public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	
 	private final Materials materials;
+	private final Textures textures;
 	private final Shape testShape;
-	
-	private final Bitmap textureBitmap;
 	
 	private long lastUpdateTime = 0;
 	
-	public TestRenderer(Materials materials, Bitmap textureImage) {
+	public TestRenderer(Materials materials, Textures textures) {
 		this.materials = materials;
-		this.textureBitmap = textureImage;
+		this.textures = textures;
 		
 		testShape = new TestShape(materials.getTestMaterial());
 	}
@@ -53,14 +48,9 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	
 	@Override
 	public void onSurfaceCreated(GLContext gl, EGLConfig config) {
+		textures.initialize(gl);
 		materials.initialize(gl);
 		testShape.initialize(gl);
-		
-		Texture2D texture = gl.getActiveTextureUnit().getDefaultTexture2D();
-		texture.setImage(0, textureBitmap);
-		texture.generateMipmaps();
-		texture.setMinificationFilter(MinificationFilter.LINEAR_MIPMAP_LINEAR);
-		texture.setMagnificationFilter(MagnificationFilter.LINEAR);
 		
 		gl.getColorBuffer().setClearColor(0, 0, 0.5f, 1);
 		

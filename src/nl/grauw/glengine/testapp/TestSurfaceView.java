@@ -15,10 +15,10 @@ public class TestSurfaceView extends GLSurfaceView {
 	public TestSurfaceView(Context context) {
 		super(context);
 		
-		Materials materials = new Materials(context.getAssets());
-		Bitmap texture = loadBitmapAsset("texture.png");
+		Textures textures = new Textures(context.getAssets());
+		Materials materials = new Materials(context.getAssets(), textures);
 		
-		renderer = new TestRenderer(materials, texture);
+		renderer = new TestRenderer(materials, textures);
 		
 		setEGLContextClientVersion(2);
 		
