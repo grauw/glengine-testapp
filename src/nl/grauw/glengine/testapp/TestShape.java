@@ -10,12 +10,10 @@ import nl.grauw.glengine.scene.Shape;
 
 public class TestShape extends Shape {
 	
-	private final Material material;
-	
 	public TestShape(Material material) {
 		super(PrimitiveType.TRIANGLES);
 		
-		this.material = material;
+		setMaterial(material);
 		
 		setVertices(
 			new VertexPositionUV(new Vector3( 0.0f,  0.5f, 0.0f), new Vector2( 0.5f, -2.0f)),
@@ -26,8 +24,6 @@ public class TestShape extends Shape {
 	
 	@Override
 	public void draw(GLContext gl, Matrix4x4 transform) {
-		material.prepareDraw(gl);
-		
 		draw(gl);
 	}
 	
