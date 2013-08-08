@@ -1,5 +1,7 @@
 package nl.grauw.glengine.testapp;
 
+import android.content.res.AssetManager;
+
 import nl.grauw.glengine.gl.GLContext;
 import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.scene.Material;
@@ -10,8 +12,8 @@ public class TestMaterial extends Material {
 	
 	private long time = 0;
 	
-	public TestMaterial(String vertexSource, String fragmentSource, Textures textures) {
-		super(vertexSource, fragmentSource);
+	public TestMaterial(AssetManager assets, Textures textures) {
+		super(assets, "test.vert", "test.frag");
 		this.textures = textures;
 	}
 	

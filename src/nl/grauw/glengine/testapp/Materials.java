@@ -9,9 +9,7 @@ public class Materials extends MaterialRegistry {
 	private final TestMaterial testMaterial;
 	
 	public Materials(AssetManager assets, Textures textures) {
-		super(assets);
-		
-		testMaterial = register(new TestMaterial(loadTextAsset("test.vert"), loadTextAsset("test.frag"), textures));
+		testMaterial = register(new TestMaterial(assets, textures));
 	}
 	
 	public TestMaterial getTestMaterial() {
