@@ -1,6 +1,7 @@
 package nl.grauw.glengine.testapp;
 
 import nl.grauw.glengine.gl.GLContext;
+import nl.grauw.glengine.model.Matrix4x4;
 import nl.grauw.glengine.scene.Material;
 
 public class TestMaterial extends Material {
@@ -27,8 +28,8 @@ public class TestMaterial extends Material {
 	}
 	
 	@Override
-	public void prepareDraw(GLContext gl) {
-		super.prepareDraw(gl);
+	public void prepareDraw(GLContext gl, Matrix4x4 transform) {
+		super.prepareDraw(gl, transform);
 		
 		program.setUniformValue("sinTime", (float)Math.sin(time / 1000f));
 		program.setUniformValue("texture", gl.getActiveTextureUnit());
