@@ -10,37 +10,37 @@ public class MatrixTest extends TestCase {
 	public void testCopyConstructor() {
 		Matrix other = new AnyMatrix(2, 2, 4, 5, 6, 7);
 		Matrix matrix = new AnyMatrix(2, 2, other);
-		assertEquals(true, matrix.equals(other));
+		assertEquals(other, matrix);
 	}
 	
 	public void testCopyConstructor_Grow() {
 		Matrix other = new AnyMatrix(2, 2, 4, 5, 6, 7);
 		Matrix matrix = new AnyMatrix(3, 3, other);
-		assertEquals(true, matrix.equals(new AnyMatrix(3, 3, 4, 5, 0, 6, 7, 0, 0, 0, 1)));
+		assertEquals(new AnyMatrix(3, 3, 4, 5, 0, 6, 7, 0, 0, 0, 1), matrix);
 	}
 	
 	public void testCopyConstructor_Shrink() {
 		Matrix other = new AnyMatrix(3, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12);
 		Matrix matrix = new AnyMatrix(2, 2, other);
-		assertEquals(true, matrix.equals(new AnyMatrix(2, 2, 4, 5, 7, 8)));
+		assertEquals(new AnyMatrix(2, 2, 4, 5, 7, 8), matrix);
 	}
 	
 	public void testCopyConstructor_DiagonalVertical() {
 		Matrix other = new AnyMatrix(1, 3, 4, 5, 6);
 		Matrix matrix = new AnyMatrix(3, 3, other);
-		assertEquals(true, matrix.equals(new AnyMatrix(3, 3, 4, 5, 6, 0, 1, 0, 0, 0, 1)));
+		assertEquals(new AnyMatrix(3, 3, 4, 5, 6, 0, 1, 0, 0, 0, 1), matrix);
 	}
 	
 	public void testCopyConstructor_DiagonalHorizontal() {
 		Matrix other = new AnyMatrix(3, 1, 4, 5, 6);
 		Matrix matrix = new AnyMatrix(4, 2, other);
-		assertEquals(true, matrix.equals(new AnyMatrix(4, 2, 4, 0, 5, 1, 6, 0, 0, 0)));
+		assertEquals(new AnyMatrix(4, 2, 4, 0, 5, 1, 6, 0, 0, 0), matrix);
 	}
 	
 	public void testCopyConstructor_Flipped() {
 		Matrix other = new AnyMatrix(3, 1, 4, 5, 6);
 		Matrix matrix = new AnyMatrix(1, 3, other);
-		assertEquals(true, matrix.equals(new AnyMatrix(1, 3, 4, 0, 0)));
+		assertEquals(new AnyMatrix(1, 3, 4, 0, 0), matrix);
 	}
 	
 	public void testGetColumns() {
@@ -76,20 +76,20 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testEquals() {
-		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Object matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		Matrix matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		assertEquals(true, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_DifferentData() {
 		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Matrix matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 2, 2, 1);
+		Object matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 2, 2, 1);
 		assertEquals(false, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_DifferentDimensions() {
-		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Matrix matrix2 = new AnyMatrix(3, 2, 6, 5, 4, 3, 2, 1);
+		Object matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Object matrix2 = new AnyMatrix(3, 2, 6, 5, 4, 3, 2, 1);
 		assertEquals(false, matrix1.equals(matrix2));
 	}
 	

@@ -10,37 +10,37 @@ public class Matrix3x3Test extends TestCase {
 	
 	public void testGetColumn() {
 		Matrix3x3 matrix = new Matrix3x3(4, 5, 6, 7, 8, 9, 10, 11, 12);
-		assertEquals(true, matrix.getColumn(0).equals(new Vector3(4, 5, 6)));
-		assertEquals(true, matrix.getColumn(1).equals(new Vector3(7, 8, 9)));
-		assertEquals(true, matrix.getColumn(2).equals(new Vector3(10, 11, 12)));
+		assertEquals(new Vector3(4, 5, 6), matrix.getColumn(0));
+		assertEquals(new Vector3(7, 8, 9), matrix.getColumn(1));
+		assertEquals(new Vector3(10, 11, 12), matrix.getColumn(2));
 	}
 	
 	public void testGetRow() {
 		Matrix3x3 matrix = new Matrix3x3(4, 5, 6, 7, 8, 9, 10, 11, 12);
-		assertEquals(true, matrix.getRow(0).equals(new Vector3(4, 7, 10)));
-		assertEquals(true, matrix.getRow(1).equals(new Vector3(5, 8, 11)));
-		assertEquals(true, matrix.getRow(2).equals(new Vector3(6, 9, 12)));
+		assertEquals(new Vector3(4, 7, 10), matrix.getRow(0));
+		assertEquals(new Vector3(5, 8, 11), matrix.getRow(1));
+		assertEquals(new Vector3(6, 9, 12), matrix.getRow(2));
 	}
 	
 	public void testIdentity() {
 		Matrix3x3 matrix = Matrix3x3.IDENTITY;
 		Vector3 vector = new Vector3(4, 5, 6);
 		Vector3 product = matrix.multiply(vector);
-		assertEquals(true, product.equals(vector));
+		assertEquals(vector, product);
 	}
 	
 	public void testTranslation() {
 		Matrix3x3 matrix = new Matrix3x3.Translation(2, 4);
 		Vector3 vector = new Vector3(4, 5, 1);
 		Vector3 product = matrix.multiply(vector);
-		assertEquals(true, product.equals(new Vector3(6, 9, 1)));
+		assertEquals(new Vector3(6, 9, 1), product);
 	}
 	
 	public void testScale() {
 		Matrix3x3 matrix = new Matrix3x3.Scale(3, 0.2f, -0.5f);
 		Vector3 vector = new Vector3(4, 5, 6);
 		Vector3 product = matrix.multiply(vector);
-		assertEquals(true, product.equals(new Vector3(12, 1, -3)));
+		assertEquals(new Vector3(12, 1, -3), product);
 	}
 	
 	public void testXRotation() {

@@ -10,39 +10,39 @@ public class Matrix4x4Test extends TestCase {
 	
 	public void testGetColumn() {
 		Matrix4x4 matrix = new Matrix4x4(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
-		assertEquals(true, matrix.getColumn(0).equals(new Vector4(4, 5, 6, 7)));
-		assertEquals(true, matrix.getColumn(1).equals(new Vector4(8, 9, 10, 11)));
-		assertEquals(true, matrix.getColumn(2).equals(new Vector4(12, 13, 14, 15)));
-		assertEquals(true, matrix.getColumn(3).equals(new Vector4(16, 17, 18, 19)));
+		assertEquals(new Vector4(4, 5, 6, 7), matrix.getColumn(0));
+		assertEquals(new Vector4(8, 9, 10, 11), matrix.getColumn(1));
+		assertEquals(new Vector4(12, 13, 14, 15), matrix.getColumn(2));
+		assertEquals(new Vector4(16, 17, 18, 19), matrix.getColumn(3));
 	}
 	
 	public void testGetRow() {
 		Matrix4x4 matrix = new Matrix4x4(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
-		assertEquals(true, matrix.getRow(0).equals(new Vector4(4, 8, 12, 16)));
-		assertEquals(true, matrix.getRow(1).equals(new Vector4(5, 9, 13, 17)));
-		assertEquals(true, matrix.getRow(2).equals(new Vector4(6, 10, 14, 18)));
-		assertEquals(true, matrix.getRow(3).equals(new Vector4(7, 11, 15, 19)));
+		assertEquals(new Vector4(4, 8, 12, 16), matrix.getRow(0));
+		assertEquals(new Vector4(5, 9, 13, 17), matrix.getRow(1));
+		assertEquals(new Vector4(6, 10, 14, 18), matrix.getRow(2));
+		assertEquals(new Vector4(7, 11, 15, 19), matrix.getRow(3));
 	}
 	
 	public void testIdentity() {
 		Matrix4x4 matrix = Matrix4x4.IDENTITY;
 		Vector4 vector = new Vector4(4, 5, 6, 7);
 		Vector4 product = matrix.multiply(vector);
-		assertEquals(true, product.equals(vector));
+		assertEquals(vector, product);
 	}
 	
 	public void testTranslation() {
 		Matrix4x4 matrix = new Matrix4x4.Translation(2, 4, -3);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
-		assertEquals(true, product.equals(new Vector4(6, 9, 3, 1)));
+		assertEquals(new Vector4(6, 9, 3, 1), product);
 	}
 	
 	public void testScale() {
 		Matrix4x4 matrix = new Matrix4x4.Scale(3, 0.2f, -0.5f);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
-		assertEquals(true, product.equals(new Vector4(12, 1, -3, 1)));
+		assertEquals(new Vector4(12, 1, -3, 1), product);
 	}
 	
 	public void testXRotation() {
