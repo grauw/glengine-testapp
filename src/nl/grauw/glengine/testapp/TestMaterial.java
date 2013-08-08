@@ -13,7 +13,7 @@ public class TestMaterial extends Material {
 	private long time = 0;
 	
 	public TestMaterial(AssetManager assets, Textures textures) {
-		super(assets, "test.vert", "test.frag");
+		super(assets, "shaders/test.vert", "shaders/test.frag");
 		this.textures = textures;
 	}
 	
