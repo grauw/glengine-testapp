@@ -76,21 +76,27 @@ public class MatrixTest extends TestCase {
 	}
 	
 	public void testEquals() {
-		Object matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		Matrix matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
 		assertEquals(true, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_DifferentData() {
 		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Object matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 2, 2, 1);
+		Matrix matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 2, 2, 1);
 		assertEquals(false, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_DifferentDimensions() {
-		Object matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
-		Object matrix2 = new AnyMatrix(3, 2, 6, 5, 4, 3, 2, 1);
+		Matrix matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Matrix matrix2 = new AnyMatrix(3, 2, 6, 5, 4, 3, 2, 1);
 		assertEquals(false, matrix1.equals(matrix2));
+	}
+	
+	public void testEquals_Object() {
+		Object matrix1 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		Object matrix2 = new AnyMatrix(2, 3, 6, 5, 4, 3, 2, 1);
+		assertEquals(true, matrix1.equals(matrix2));
 	}
 	
 	public void testEquals_Self() {
