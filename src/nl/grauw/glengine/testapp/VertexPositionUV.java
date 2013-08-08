@@ -10,7 +10,7 @@ public class VertexPositionUV extends Vertex {
 	private final Vector3 position;
 	private final Vector2 uv;
 	
-	public static final VertexInfo vertexInfo = new VertexInfo(
+	public static final VertexInfo info = new VertexInfo(
 		new AttributeInfo("position", 3, AttributeType.FLOAT),
 		new AttributeInfo("uv", 2, AttributeType.FLOAT)
 	);
@@ -27,8 +27,8 @@ public class VertexPositionUV extends Vertex {
 	}
 	
 	@Override
-	public VertexInfo getVertexInfo() {
-		return vertexInfo;
+	public VertexInfo getInfo() {
+		return info;
 	}
 	
 }
