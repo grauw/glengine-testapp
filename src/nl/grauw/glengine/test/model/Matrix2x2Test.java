@@ -41,10 +41,10 @@ public class Matrix2x2Test extends TestCase {
 	}
 	
 	public void testRotation() {
-		Matrix2x2 matrix = new Matrix2x2.Rotation((float)(Math.PI / 2));
+		Matrix2x2 matrix = new Matrix2x2.Rotation(Math.PI / 2);
 		Vector2 vector = new Vector2(0, 1);
 		Vector2 product = matrix.multiply(vector);
-		float inpreciseZero = (float)Math.cos((float)(Math.PI / 2));
+		float inpreciseZero = (float)Math.cos(Math.PI / 2);
 		assertEquals(new Vector2(-1, inpreciseZero), product);
 	}
 	

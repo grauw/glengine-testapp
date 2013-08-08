@@ -56,7 +56,7 @@ public class TestRenderer extends GLEngineRenderer implements Benchmark {
 	
 	public Object benchmark() {
 		Matrix projection = new Matrix4x4.OrthographicProjection(-3, 2, -2, 5, 13, 151);
-		Matrix rotation = new Matrix4x4.Rotation(new Quaternion.EulerXYZ(1.3f, 2.2f, 3.1f));
+		Matrix rotation = new Matrix4x4.Rotation(new Quaternion.EulerXYZ(1.3, 2.2, 3.1));
 		Matrix output = Matrix4x4.IDENTITY;
 		
 		for (int i = 0; i < 100000; i++) {
