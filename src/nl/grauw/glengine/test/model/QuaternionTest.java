@@ -12,21 +12,21 @@ public class QuaternionTest extends TestCase {
 	
 	public void testMultiply_Vector3() {
 		Quaternion quaternion = new Quaternion.Axis(0, 0, 1, Math.PI / 2);
-		Vector3 vector = new Vector3(0, 1, 5);
+		Vector3 vector = new Vector3(3, 4, 5);
 		Vector3 product = quaternion.multiply(vector);
 		
-		Utils.assertFloatEquals(-1, product.getX());
-		Utils.assertFloatEquals(0, product.getY());
+		Utils.assertFloatEquals(-4, product.getX());
+		Utils.assertFloatEquals(3, product.getY());
 		Utils.assertFloatEquals(5, product.getZ());
 	}
 	
 	public void testMultiply_Vector4() {
 		Quaternion quaternion = new Quaternion.Axis(0, 0, 1, Math.PI / 2);
-		Vector4 vector = new Vector4(0, 1, 5, 6);
+		Vector4 vector = new Vector4(3, 4, 5, 6);
 		Vector4 product = quaternion.multiply(vector);
 		
-		Utils.assertFloatEquals(-1, product.getX());
-		Utils.assertFloatEquals(0, product.getY());
+		Utils.assertFloatEquals(-4, product.getX());
+		Utils.assertFloatEquals(3, product.getY());
 		Utils.assertFloatEquals(5, product.getZ());
 		Utils.assertFloatEquals(6, product.getW());
 	}
