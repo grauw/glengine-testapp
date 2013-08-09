@@ -59,6 +59,13 @@ public class QuaternionTest extends TestCase {
 		Utils.assertEqualsish(0, product.getW());
 	}
 	
+	public void testMultiply_Reciprocal() {
+		Quaternion quaternion = new Quaternion.Axis(1, 2, 3, 4);
+		Quaternion product = quaternion.multiply(quaternion.reciprocal());
+		
+		assertEquals(Quaternion.IDENTITY, product);
+	}
+	
 	public void testEquals() {
 		Quaternion quaternion1 = new Quaternion.Axis(4, 5, 6, 7);
 		Quaternion quaternion2 = new Quaternion.Axis(4, 5, 6, 7);
