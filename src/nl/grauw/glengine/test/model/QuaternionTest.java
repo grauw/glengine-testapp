@@ -22,6 +22,15 @@ public class QuaternionTest extends TestCase {
 		assertEquals((float)(Math.PI / 3), (float)quaternion.getAngle());
 	}
 	
+	public void testMultiply_Identity() {
+		Quaternion quaternion = new Quaternion.Axis(1, 2, 3, 4);
+		Quaternion product1 = quaternion.multiply(Quaternion.IDENTITY);
+		Quaternion product2 = Quaternion.IDENTITY.multiply(quaternion);
+		
+		assertEquals(quaternion, product1);
+		assertEquals(quaternion, product2);
+	}
+	
 	public void testMultiply_Vector3() {
 		Quaternion quaternion = new Quaternion.Axis(0, 0, 1, Math.PI / 2);
 		Vector3 vector = new Vector3(3, 4, 5);
