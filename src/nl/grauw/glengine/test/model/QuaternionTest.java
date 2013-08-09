@@ -10,6 +10,18 @@ import nl.grauw.glengine.test.Utils;
 
 public class QuaternionTest extends TestCase {
 	
+	public void testGetAxis() {
+		Quaternion quaternion = new Quaternion.Axis(0, 1, 0, Math.PI / 3);
+		
+		assertEquals(new Vector3(0, 1, 0), quaternion.getAxis());
+	}
+	
+	public void testGetAngle() {
+		Quaternion quaternion = new Quaternion.Axis(0, 1, 0, Math.PI / 3);
+		
+		assertEquals((float)(Math.PI / 3), (float)quaternion.getAngle());
+	}
+	
 	public void testMultiply_Vector3() {
 		Quaternion quaternion = new Quaternion.Axis(0, 0, 1, Math.PI / 2);
 		Vector3 vector = new Vector3(3, 4, 5);
