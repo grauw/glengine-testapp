@@ -21,10 +21,10 @@ public class Utils {
 	 * @param maxUlps The maximum difference in ULPs.
 	 */
 	public static void assertFloatEquals(float expected, float actual, int maxUlps) {
-		long difference = getULPDifference(expected, actual);
-		
 		if (Float.isNaN(expected) || Float.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
+		
+		long difference = getULPDifference(expected, actual);
 		if (difference > maxUlps)
 			TestCase.assertEquals("ULP difference: " + difference + ",", expected, actual);
 	}
@@ -49,10 +49,10 @@ public class Utils {
 	 * @see Utils#assertFloatEquals(float, float, int)
 	 */
 	public static void assertDoubleEquals(double expected, double actual, long maxUlps) {
-		long difference = getULPDifference(expected, actual);
-		
 		if (Double.isNaN(expected) || Double.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
+		
+		long difference = getULPDifference(expected, actual);
 		if (difference > maxUlps)
 			TestCase.assertEquals("ULP difference: " + difference + ",", expected, actual);
 	}
