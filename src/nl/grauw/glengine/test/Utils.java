@@ -58,7 +58,7 @@ public class Utils {
 		if (Double.isNaN(expected) || Double.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
 		if (difference > maxUlps)
-			TestCase.assertEquals(expected, actual);
+			TestCase.assertEquals("ULP difference: " + difference + ",", expected, actual);
 	}
 	
 	/**
