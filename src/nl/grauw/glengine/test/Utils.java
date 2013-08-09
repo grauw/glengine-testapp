@@ -23,7 +23,7 @@ public class Utils {
 	 * @param actual The actual value.
 	 * @param maxUlps The maximum difference in ULPs.
 	 */
-	public static void assertFloatEquals(float expected, float actual, int maxUlps) {
+	public static void assertEqualsish(float expected, float actual, int maxUlps) {
 		if (Float.isNaN(expected) || Float.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
 		
@@ -37,10 +37,10 @@ public class Utils {
 	 * 
 	 * @param expected The expected value.
 	 * @param actual The actual value.
-	 * @see Utils#assertFloatEquals(float, float, int)
+	 * @see Utils#assertEqualsish(float, float, int)
 	 */
-	public static void assertFloatEquals(float expected, float actual) {
-		assertFloatEquals(expected, actual, 5);
+	public static void assertEqualsish(float expected, float actual) {
+		assertEqualsish(expected, actual, 5);
 	}
 	
 	/**
@@ -49,9 +49,9 @@ public class Utils {
 	 * @param expected The expected value.
 	 * @param actual The actual value.
 	 * @param maxUlps The maximum difference in ULPs.
-	 * @see Utils#assertFloatEquals(float, float, int)
+	 * @see Utils#assertEqualsish(float, float, int)
 	 */
-	public static void assertDoubleEquals(double expected, double actual, long maxUlps) {
+	public static void assertEqualsish(double expected, double actual, long maxUlps) {
 		if (Double.isNaN(expected) || Double.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
 		
@@ -65,10 +65,10 @@ public class Utils {
 	 * 
 	 * @param expected The expected value.
 	 * @param actual The actual value.
-	 * @see Utils#assertFloatEquals(float, float, int)
+	 * @see Utils#assertEqualsish(float, float, int)
 	 */
-	public static void assertDoubleEquals(double expected, double actual) {
-		assertDoubleEquals(expected, actual, 5);
+	public static void assertEqualsish(double expected, double actual) {
+		assertEqualsish(expected, actual, 5);
 	}
 	
 	public static void assertEqualsish(Matrix expected, Matrix actual, int maxUlps) {

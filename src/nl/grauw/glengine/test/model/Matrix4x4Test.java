@@ -118,9 +118,9 @@ public class Matrix4x4Test extends TestCase {
 		float y = product.getY() / product.getW();
 		float z = product.getZ() / product.getW();
 		
-		Utils.assertFloatEquals(0.1f, x);
-		Utils.assertFloatEquals(-0.5f, y);
-		Utils.assertFloatEquals(0.84f, z);
+		Utils.assertEqualsish(0.1f, x);
+		Utils.assertEqualsish(-0.5f, y);
+		Utils.assertEqualsish(0.84f, z);
 	}
 	
 	public void testPerspectiveProjection_Constructors() {

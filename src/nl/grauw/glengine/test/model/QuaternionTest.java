@@ -53,10 +53,10 @@ public class QuaternionTest extends TestCase {
 		Vector4 vector = new Vector4(0, 1, 5, 0);
 		Vector4 product = matrix.multiply(vector);
 		
-		Utils.assertFloatEquals(-1, product.getX());
+		Utils.assertEqualsish(-1, product.getX());
 		assertEquals(true, product.getY() < 1e-7 && product.getY() > -1e-7);  // close enough to 0...
-		Utils.assertFloatEquals(5, product.getZ());
-		Utils.assertFloatEquals(0, product.getW());
+		Utils.assertEqualsish(5, product.getZ());
+		Utils.assertEqualsish(0, product.getW());
 	}
 	
 	public void testEquals() {
