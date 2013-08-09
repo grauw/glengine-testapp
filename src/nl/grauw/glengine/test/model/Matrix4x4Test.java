@@ -3,6 +3,8 @@ package nl.grauw.glengine.test.model;
 import junit.framework.TestCase;
 
 import nl.grauw.glengine.model.Matrix4x4;
+import nl.grauw.glengine.model.Quaternion;
+import nl.grauw.glengine.model.Vector3;
 import nl.grauw.glengine.model.Vector4;
 import nl.grauw.glengine.test.Utils;
 
@@ -79,6 +81,25 @@ public class Matrix4x4Test extends TestCase {
 		Utils.assertFloatEquals(product1.getY(), product2.getY());
 		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
 		Utils.assertFloatEquals(product1.getW(), product2.getW());
+	}
+	
+	public void testTranslationRotationScale() {
+		Vector3 translation = new Vector3(4, 5, 6);
+		Quaternion rotation = new Quaternion.EulerXYZ(1, 2, 3);
+		Vector3 scale = new Vector3(10, 20, 30);
+		Matrix4x4 matrix1 = new Matrix4x4.TranslationRotationScale(translation, rotation, scale);
+		Matrix4x4 matrix2 = new Matrix4x4.Translation(translation).multiply(new Matrix4x4.Rotation(rotation)).multiply(new Matrix4x4.Scale(scale));
+		
+		assertEquals(matrix2, matrix1);
+	}
+	
+	public void testTranslationRotationScale_TranslateScale() {
+		Vector3 translation = new Vector3(4, 5, 6);
+		Vector3 scale = new Vector3(10, 20, 30);
+		Matrix4x4 matrix1 = new Matrix4x4.TranslationRotationScale(translation, scale);
+		Matrix4x4 matrix2 = new Matrix4x4.Translation(translation).multiply(new Matrix4x4.Scale(scale));
+		
+		assertEquals(matrix2, matrix1);
 	}
 	
 	public void testPerspectiveProjection() {
