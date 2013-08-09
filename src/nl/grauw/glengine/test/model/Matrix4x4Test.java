@@ -40,11 +40,27 @@ public class Matrix4x4Test extends TestCase {
 		assertEquals(new Vector4(6, 9, 3, 1), product);
 	}
 	
+	public void testTranslation_Multiply() {
+		Matrix4x4 translation = new Matrix4x4.Translation(11, 23, 47);
+		Matrix4x4 reference = new Matrix4x4(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 11, 23, 47, 1);
+		Matrix4x4 operand = new Matrix4x4(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
+		
+		assertEquals(reference.multiply(operand), translation.multiply(operand));
+	}
+	
 	public void testScale() {
 		Matrix4x4 matrix = new Matrix4x4.Scale(3, 0.2f, -0.5f);
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product = matrix.multiply(vector);
 		assertEquals(new Vector4(12, 1, -3, 1), product);
+	}
+	
+	public void testScale_Multiply() {
+		Matrix4x4 scale = new Matrix4x4.Scale(11, 23, 47, 71);
+		Matrix4x4 reference = new Matrix4x4(11, 0, 0, 0, 0, 23, 0, 0, 0, 0, 47, 0, 0, 0, 0, 71);
+		Matrix4x4 operand = new Matrix4x4(4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19);
+		
+		assertEquals(reference.multiply(operand), scale.multiply(operand));
 	}
 	
 	public void testXRotation() {

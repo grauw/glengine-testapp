@@ -36,11 +36,27 @@ public class Matrix3x3Test extends TestCase {
 		assertEquals(new Vector3(6, 9, 1), product);
 	}
 	
+	public void testTranslation_Multiply() {
+		Matrix3x3 translation = new Matrix3x3.Translation(11, 23);
+		Matrix3x3 reference = new Matrix3x3(1, 0, 0, 0, 1, 0, 11, 23, 1);
+		Matrix3x3 operand = new Matrix3x3(4, 5, 6, 7, 8, 9, 10, 11, 12);
+		
+		assertEquals(reference.multiply(operand), translation.multiply(operand));
+	}
+	
 	public void testScale() {
 		Matrix3x3 matrix = new Matrix3x3.Scale(3, 0.2f, -0.5f);
 		Vector3 vector = new Vector3(4, 5, 6);
 		Vector3 product = matrix.multiply(vector);
 		assertEquals(new Vector3(12, 1, -3), product);
+	}
+	
+	public void testScale_Multiply() {
+		Matrix3x3 scale = new Matrix3x3.Scale(11, 23, 47);
+		Matrix3x3 reference = new Matrix3x3(11, 0, 0, 0, 23, 0, 0, 0, 47);
+		Matrix3x3 operand = new Matrix3x3(4, 5, 6, 7, 8, 9, 10, 11, 12);
+		
+		assertEquals(reference.multiply(operand), scale.multiply(operand));
 	}
 	
 	public void testXRotation() {
