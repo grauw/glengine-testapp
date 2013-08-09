@@ -80,8 +80,10 @@ public class Utils {
 		for (int i = 0; i < expectedElements.length; i++) {
 			if (Float.isNaN(actualElements[i]) || Float.isNaN(actualElements[i]))
 				TestCase.assertEquals(expected, actual);
-			if (getULPDifference(expectedElements[i], actualElements[i]) > maxUlps)
-				TestCase.assertEquals(expected, actual);
+			
+			int difference = getULPDifference(expectedElements[i], actualElements[i]);
+			if (difference > maxUlps)
+				TestCase.assertEquals("ULP difference: " + difference + ",", expected, actual);
 		}
 	}
 	
@@ -95,8 +97,10 @@ public class Utils {
 		for (int i = 0; i < expectedElements.length; i++) {
 			if (Float.isNaN(actualElements[i]) || Float.isNaN(actualElements[i]))
 				TestCase.assertEquals(expected, actual);
-			if (getULPDifference(expectedElements[i], actualElements[i]) > maxUlps)
-				TestCase.assertEquals(expected, actual);
+			
+			int difference = getULPDifference(expectedElements[i], actualElements[i]);
+			if (difference > maxUlps)
+				TestCase.assertEquals("ULP difference: " + difference + ",", expected, actual);
 		}
 	}
 	
