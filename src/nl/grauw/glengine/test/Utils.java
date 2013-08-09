@@ -21,9 +21,7 @@ public class Utils {
 	 * @param maxUlps The maximum difference in ULPs.
 	 */
 	public static void assertFloatEquals(float expected, float actual, int maxUlps) {
-		int expectedBits = Float.floatToIntBits(expected) < 0 ? 0x80000000 - Float.floatToIntBits(expected) : Float.floatToIntBits(expected);
-		int actualBits = Float.floatToIntBits(actual) < 0 ? 0x80000000 - Float.floatToIntBits(actual) : Float.floatToIntBits(actual);
-		int difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
+		long difference = getULPDifference(expected, actual);
 		
 		if (Float.isNaN(expected) || Float.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
@@ -51,9 +49,7 @@ public class Utils {
 	 * @see Utils#assertFloatEquals(float, float, int)
 	 */
 	public static void assertDoubleEquals(double expected, double actual, long maxUlps) {
-		long expectedBits = Double.doubleToLongBits(expected) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(expected) : Double.doubleToLongBits(expected);
-		long actualBits = Double.doubleToLongBits(actual) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(actual) : Double.doubleToLongBits(actual);
-		long difference = expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
+		long difference = getULPDifference(expected, actual);
 		
 		if (Double.isNaN(expected) || Double.isNaN(actual))
 			TestCase.fail("Not a number, expected: <" + expected + ">, actual: <" + actual + ">");
@@ -70,6 +66,18 @@ public class Utils {
 	 */
 	public static void assertDoubleEquals(double expected, double actual) {
 		assertDoubleEquals(expected, actual, 5);
+	}
+	
+	public static int getULPDifference(float expected, float actual) {
+		int expectedBits = Float.floatToIntBits(expected) < 0 ? 0x80000000 - Float.floatToIntBits(expected) : Float.floatToIntBits(expected);
+		int actualBits = Float.floatToIntBits(actual) < 0 ? 0x80000000 - Float.floatToIntBits(actual) : Float.floatToIntBits(actual);
+		return expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
+	}
+	
+	public static long getULPDifference(double expected, double actual) {
+		long expectedBits = Double.doubleToLongBits(expected) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(expected) : Double.doubleToLongBits(expected);
+		long actualBits = Double.doubleToLongBits(actual) < 0 ? 0x8000000000000000L - Double.doubleToLongBits(actual) : Double.doubleToLongBits(actual);
+		return expectedBits > actualBits ? expectedBits - actualBits : actualBits - expectedBits;
 	}
 	
 }
