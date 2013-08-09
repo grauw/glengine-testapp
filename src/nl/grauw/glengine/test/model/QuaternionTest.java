@@ -36,9 +36,7 @@ public class QuaternionTest extends TestCase {
 		Vector3 vector = new Vector3(3, 4, 5);
 		Vector3 product = quaternion.multiply(vector);
 		
-		Utils.assertFloatEquals(-4, product.getX());
-		Utils.assertFloatEquals(3, product.getY());
-		Utils.assertFloatEquals(5, product.getZ());
+		Utils.assertEqualsish(new Vector3(-4, 3, 5), product);
 	}
 	
 	public void testMultiply_Vector4() {
@@ -46,10 +44,7 @@ public class QuaternionTest extends TestCase {
 		Vector4 vector = new Vector4(3, 4, 5, 6);
 		Vector4 product = quaternion.multiply(vector);
 		
-		Utils.assertFloatEquals(-4, product.getX());
-		Utils.assertFloatEquals(3, product.getY());
-		Utils.assertFloatEquals(5, product.getZ());
-		Utils.assertFloatEquals(6, product.getW());
+		Utils.assertEqualsish(new Vector4(-4, 3, 5, 6), product);
 	}
 	
 	public void testMultiply_RotationMatrix() {

@@ -2,6 +2,9 @@ package nl.grauw.glengine.test;
 
 import junit.framework.TestCase;
 
+import nl.grauw.glengine.model.Matrix;
+import nl.grauw.glengine.model.Quaternion;
+
 public class Utils {
 	
 	/**
@@ -66,6 +69,39 @@ public class Utils {
 	 */
 	public static void assertDoubleEquals(double expected, double actual) {
 		assertDoubleEquals(expected, actual, 5);
+	}
+	
+	public static void assertEqualsish(Matrix expected, Matrix actual, int maxUlps) {
+		if (actual.getColumns() != expected.getColumns() || actual.getRows() != expected.getRows())
+			TestCase.assertEquals(expected, actual);
+		
+		float[] expectedElements = expected.getElements();
+		float[] actualElements = actual.getElements();
+		for (int i = 0; i < expectedElements.length; i++) {
+			if (Float.isNaN(actualElements[i]) || Float.isNaN(actualElements[i]))
+				TestCase.assertEquals(expected, actual);
+			if (getULPDifference(expectedElements[i], actualElements[i]) > maxUlps)
+				TestCase.assertEquals(expected, actual);
+		}
+	}
+	
+	public static void assertEqualsish(Matrix expected, Matrix actual) {
+		assertEqualsish(expected, actual, 5);
+	}
+	
+	public static void assertEqualsish(Quaternion expected, Quaternion actual, int maxUlps) {
+		float[] expectedElements = new float[] { expected.getX(), expected.getY(), expected.getZ(), expected.getW() };
+		float[] actualElements = new float[] { actual.getX(), actual.getY(), actual.getZ(), actual.getW() };
+		for (int i = 0; i < expectedElements.length; i++) {
+			if (Float.isNaN(actualElements[i]) || Float.isNaN(actualElements[i]))
+				TestCase.assertEquals(expected, actual);
+			if (getULPDifference(expectedElements[i], actualElements[i]) > maxUlps)
+				TestCase.assertEquals(expected, actual);
+		}
+	}
+	
+	public static void assertEqualsish(Quaternion expected, Quaternion actual) {
+		assertEqualsish(expected, actual, 5);
 	}
 	
 	public static int getULPDifference(float expected, float actual) {

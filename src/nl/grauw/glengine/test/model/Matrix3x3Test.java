@@ -65,9 +65,7 @@ public class Matrix3x3Test extends TestCase {
 		Vector3 vector = new Vector3(4, 5, 6);
 		Vector3 product1 = matrix1.multiply(vector);
 		Vector3 product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getX(), product2.getX());
-		Utils.assertFloatEquals(product1.getY(), product2.getY());
-		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
+		Utils.assertEqualsish(product1, product2);
 	}
 	
 	public void testYRotation() {
@@ -76,9 +74,7 @@ public class Matrix3x3Test extends TestCase {
 		Vector3 vector = new Vector3(4, 5, 6);
 		Vector3 product1 = matrix1.multiply(vector);
 		Vector3 product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getX(), product2.getX());
-		Utils.assertFloatEquals(product1.getY(), product2.getY());
-		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
+		Utils.assertEqualsish(product1, product2);
 	}
 	
 	public void testZRotation() {
@@ -87,9 +83,7 @@ public class Matrix3x3Test extends TestCase {
 		Vector3 vector = new Vector3(4, 5, 6);
 		Vector3 product1 = matrix1.multiply(vector);
 		Vector3 product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getX(), product2.getX());
-		Utils.assertFloatEquals(product1.getY(), product2.getY());
-		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
+		Utils.assertEqualsish(product1, product2);
 	}
 	
 }

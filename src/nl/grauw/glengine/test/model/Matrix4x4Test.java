@@ -69,10 +69,7 @@ public class Matrix4x4Test extends TestCase {
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product1 = matrix1.multiply(vector);
 		Vector4 product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getX(), product2.getX());
-		Utils.assertFloatEquals(product1.getY(), product2.getY());
-		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
-		Utils.assertFloatEquals(product1.getW(), product2.getW());
+		Utils.assertEqualsish(product1, product2);
 	}
 	
 	public void testYRotation() {
@@ -81,10 +78,7 @@ public class Matrix4x4Test extends TestCase {
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product1 = matrix1.multiply(vector);
 		Vector4 product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getX(), product2.getX());
-		Utils.assertFloatEquals(product1.getY(), product2.getY());
-		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
-		Utils.assertFloatEquals(product1.getW(), product2.getW());
+		Utils.assertEqualsish(product1, product2);
 	}
 	
 	public void testZRotation() {
@@ -93,10 +87,7 @@ public class Matrix4x4Test extends TestCase {
 		Vector4 vector = new Vector4(4, 5, 6, 1);
 		Vector4 product1 = matrix1.multiply(vector);
 		Vector4 product2 = matrix2.multiply(vector);
-		Utils.assertFloatEquals(product1.getX(), product2.getX());
-		Utils.assertFloatEquals(product1.getY(), product2.getY());
-		Utils.assertFloatEquals(product1.getZ(), product2.getZ());
-		Utils.assertFloatEquals(product1.getW(), product2.getW());
+		Utils.assertEqualsish(product1, product2);
 	}
 	
 	public void testTranslationRotationScale() {
@@ -142,10 +133,7 @@ public class Matrix4x4Test extends TestCase {
 		Matrix4x4 projection = new Matrix4x4.OrthographicProjection(-3, 3, -2, 2, 15, 115);
 		Vector4 vector = new Vector4(1.5f, -5, -75, 1);
 		Vector4 product = projection.multiply(vector);
-		Utils.assertFloatEquals(0.5f, product.getX());
-		Utils.assertFloatEquals(-2.5f, product.getY());
-		Utils.assertFloatEquals(0.2f, product.getZ());
-		Utils.assertFloatEquals(1.0f, product.getW());
+		Utils.assertEqualsish(new Vector4(0.5f, -2.5f, 0.2f, 1.0f), product);
 	}
 	
 	public void testOrthographicProjection_Constructors() {
