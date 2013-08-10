@@ -107,4 +107,11 @@ public class QuaternionTest extends TestCase {
 		assertEquals(true, quaternion.equals(quaternion));
 	}
 	
+	public void testEulerXYZ() {
+		Quaternion quaternion = new Quaternion.EulerXYZ(1, 2, 3);
+		Quaternion expected = new Quaternion.Axis(1, 0, 0, 1).multiply(new Quaternion.Axis(0, 1, 0, 2).multiply(new Quaternion.Axis(0, 0, 1, 3)));
+		
+		assertEquals(expected, quaternion);
+	}
+	
 }
