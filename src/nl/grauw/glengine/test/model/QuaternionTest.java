@@ -50,13 +50,10 @@ public class QuaternionTest extends TestCase {
 	public void testMultiply_RotationMatrix() {
 		Quaternion quaternion = new Quaternion.Axis(0, 0, 1, Math.PI / 2);
 		Matrix4x4 matrix = new Matrix4x4.Rotation(quaternion);
-		Vector4 vector = new Vector4(0, 1, 5, 0);
+		Vector4 vector = new Vector4(3, 1, 5, 0);
 		Vector4 product = matrix.multiply(vector);
 		
-		Utils.assertEqualsish(-1, product.getX());
-		assertEquals(true, product.getY() < 1e-7 && product.getY() > -1e-7);  // close enough to 0...
-		Utils.assertEqualsish(5, product.getZ());
-		Utils.assertEqualsish(0, product.getW());
+		Utils.assertEqualsish(new Vector4(-1, 3, 5, 0), product);
 	}
 	
 	public void testMultiply_Reciprocal() {
