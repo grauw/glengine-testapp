@@ -111,7 +111,42 @@ public class QuaternionTest extends TestCase {
 		Quaternion quaternion = new Quaternion.EulerXYZ(1, 2, 3);
 		Quaternion expected = new Quaternion.Axis(1, 0, 0, 1).multiply(new Quaternion.Axis(0, 1, 0, 2).multiply(new Quaternion.Axis(0, 0, 1, 3)));
 		
-		assertEquals(expected, quaternion);
+		Utils.assertEqualsish(expected, quaternion);
+	}
+	
+	public void testEulerXZY() {
+		Quaternion quaternion = new Quaternion.EulerXZY(1, 2, 3);
+		Quaternion expected = new Quaternion.Axis(1, 0, 0, 1).multiply(new Quaternion.Axis(0, 0, 1, 3).multiply(new Quaternion.Axis(0, 1, 0, 2)));
+		
+		Utils.assertEqualsish(expected, quaternion);
+	}
+	
+	public void testEulerYXZ() {
+		Quaternion quaternion = new Quaternion.EulerYXZ(1, 2, 3);
+		Quaternion expected = new Quaternion.Axis(0, 1, 0, 2).multiply(new Quaternion.Axis(1, 0, 0, 1).multiply(new Quaternion.Axis(0, 0, 1, 3)));
+		
+		Utils.assertEqualsish(expected, quaternion);
+	}
+	
+	public void testEulerYZX() {
+		Quaternion quaternion = new Quaternion.EulerYZX(1, 2, 3);
+		Quaternion expected = new Quaternion.Axis(0, 1, 0, 2).multiply(new Quaternion.Axis(0, 0, 1, 3).multiply(new Quaternion.Axis(1, 0, 0, 1)));
+		
+		Utils.assertEqualsish(expected, quaternion);
+	}
+	
+	public void testEulerZXY() {
+		Quaternion quaternion = new Quaternion.EulerZXY(1, 2, 3);
+		Quaternion expected = new Quaternion.Axis(0, 0, 1, 3).multiply(new Quaternion.Axis(1, 0, 0, 1).multiply(new Quaternion.Axis(0, 1, 0, 2)));
+		
+		Utils.assertEqualsish(expected, quaternion);
+	}
+	
+	public void testEulerZYX() {
+		Quaternion quaternion = new Quaternion.EulerZYX(1, 2, 3);
+		Quaternion expected = new Quaternion.Axis(0, 0, 1, 3).multiply(new Quaternion.Axis(0, 1, 0, 2).multiply(new Quaternion.Axis(1, 0, 0, 1)));
+		
+		Utils.assertEqualsish(expected, quaternion);
 	}
 	
 }
