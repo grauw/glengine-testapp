@@ -73,6 +73,15 @@ public class QuaternionTest extends TestCase {
 		assertEquals(new Quaternion(0, 0, 0, quaternion.getMagnitudeSquared()), product);
 	}
 	
+	public void testMultiply_ConjugateVector() {
+		Quaternion quaternion = new Quaternion.Axis(1, 2, 3, 4).normalize();
+		Vector3 vector = new Vector3(1, 3, 5);
+		Vector3 product = quaternion.multiply(vector);
+		Vector3 product2 = quaternion.conjugate().multiply(product);
+		
+		Utils.assertEqualsish(vector, product2);
+	}
+	
 	public void testEquals() {
 		Quaternion quaternion1 = new Quaternion.Axis(4, 5, 6, 7);
 		Quaternion quaternion2 = new Quaternion.Axis(4, 5, 6, 7);
